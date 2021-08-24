@@ -14,14 +14,14 @@ const MemberItem = (props) => {
          <div className={s.info}>
             <NavLink to={`profile/${props.id}`} className={s.userName}>{props.name}</NavLink>
             <div className={s.buttons}>
-               {props.followed ?
+               {props.isAuth && (props.followed ?
                   <Button text={'unfollow'}
                      disabled={props.followingInProgress.some(id => id === props.id)}
                      onClick={() => props.unfollow(props.id)} /> :
                   <Button text={'follow'}
                      disabled={props.followingInProgress.some(id => id === props.id)}
                      onClick={() => props.follow(props.id)} />
-               }
+               )}
             </div>
          </div>
       </li>

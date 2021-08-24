@@ -1,3 +1,7 @@
+.block {
+  padding-top: 20px;
+}
+
 .block > div {
   margin-bottom: 20px;
 }

@@ -9,6 +9,8 @@ const SET_CURRENT_PAGE = `${membersID}/SET_CURRENT_PAGE`;
 const SET_TOTAL_ITEMS_COUNT = `${membersID}/SET_TOTAL_ITEMS_COUNT`;
 const SET_TOTAL_MEMBERS_COUNT = `${membersID}/SET_TOTAL_MEMBERS_COUNT`;
 const SET_TOTAL_FRIENDS_COUNT = `${membersID}/SET_TOTAL_FRIENDS_COUNT`;
+const SET_MEMBERS_TYPE = `${membersID}/SET_MEMBERS_TYPE`;
+const SET_SEARCH_TERM = `${membersID}/SET_SEARCH_TERM`;
 const TOGGLE_FOLLOWING = `${membersID}/TOGGLE_FOLLOWING`;
 const TOGGLE_FOLLOWING_PROGRESS = `${membersID}/TOGGLE_FOLLOWING_PROGRESS`;
 const TOGGLE_IS_FETCHING = `${membersID}/TOGGLE_IS_FETCHING`;
@@ -22,6 +24,8 @@ const initialState = {
    totalItemsCount: null,
    totalMembersCount: null,
    totalFriendsCount: null,
+   membersType: null, //null-all members, true-only friends, false-none friends
+   searchTerm: '',
    followingInProgress: [],
    isFetching: true
 }
@@ -47,7 +51,13 @@ const membersReducer = (state = initialState, action) => {
          return { ...state, totalMembersCount: action.totalMembersCount }
       }
       case SET_TOTAL_FRIENDS_COUNT: {
-         return { ...state, totalFriendsCount: action.totalFriendsCount }
+         return { ...state, totalFriendsCount: action.totalFriendsCount };
+      }
+      case SET_MEMBERS_TYPE: {
+         return { ...state, membersType: action.membersType };
+      }
+      case SET_SEARCH_TERM: {
+         return { ...state, searchTerm: action.searchTerm };
       }
       case TOGGLE_FOLLOWING: {
          return {
@@ -80,6 +90,8 @@ const setCurrentPageAC = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage
 const setTotalItemsCountAC = (totalItemsCount) => ({ type: SET_TOTAL_ITEMS_COUNT, totalItemsCount });
 const setTotalMembersCountAC = (totalMembersCount) => ({ type: SET_TOTAL_MEMBERS_COUNT, totalMembersCount });
 const setTotalFriendsCountAC = (totalFriendsCount) => ({ type: SET_TOTAL_FRIENDS_COUNT, totalFriendsCount });
+const setMembersTypeAC = (membersType) => ({ type: SET_MEMBERS_TYPE, membersType });
+const setSearchTermAC = (searchTerm) => ({ type: SET_SEARCH_TERM, searchTerm });
 const toggleFollowingAC = (id, followed) => ({ type: TOGGLE_FOLLOWING, id, followed });
 const toggleFollowingProgressAC = (followingInProgress, id) => ({ type: TOGGLE_FOLLOWING_PROGRESS, followingInProgress, id });
 const toggleIsFetchingAC = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
@@ -91,6 +103,8 @@ export const setMembersThunkCreater = (count, page, term, friend) => {
       dispatch(setMembersAC(response.items));
       dispatch(setCurrentPageAC(page));
       dispatch(setTotalItemsCountAC(response.totalCount));
+      dispatch(setMembersTypeAC(friend));
+      dispatch(setSearchTermAC(term));
       dispatch(toggleIsFetchingAC(false));
    }
 }

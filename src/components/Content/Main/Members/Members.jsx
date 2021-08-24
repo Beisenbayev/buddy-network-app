@@ -15,6 +15,7 @@ const Members = (props) => {
          followingInProgress={props.followingInProgress}
          follow={props.follow}
          unfollow={props.unfollow}
+         isAuth={props.isAuth}
       />
    })
 
@@ -23,12 +24,14 @@ const Members = (props) => {
          <h1 className={cn(s.title, 'main-page__title')}>Members</h1>
          <div className={s.listTabs}>
             <ul>
-               <li className={s.listTabItem}>
+               <li className={s.listTabItem} onClick={() => props.membersTypeChange(null)}>
                   <span>All Members</span><b>{props.totalMembersCount}</b>
                </li>
-               <li className={s.listTabItem}>
-                  <span>Friends</span><b>{props.totalFriendsCount}</b>
-               </li>
+               {props.isAuth &&
+                  <li className={s.listTabItem} onClick={() => props.membersTypeChange(true)}>
+                     <span>Friends</span><b>{props.totalFriendsCount}</b>
+                  </li>
+               }
             </ul>
          </div>
          <div className={s.pagination}>

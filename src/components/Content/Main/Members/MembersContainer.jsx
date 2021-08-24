@@ -12,11 +12,18 @@ import Members from './Members';
 
 class MembersContainer extends React.Component {
    componentDidMount() {
-      this.props.setMembers(this.props.pageItemsCount, this.props.currentPage);
+      this.props.setMembers(this.props.pageItemsCount, this.props.currentPage,
+         this.props.searchTerm, this.props.membersType);
+   }
+
+   onMembersTypeChange(type) {
+      this.props.setMembers(this.props.pageItemsCount, 1,
+         this.props.searchTerm, type);
    }
 
    onPageChange(page) {
-      this.props.setMembers(this.props.pageItemsCount, page);
+      this.props.setMembers(this.props.pageItemsCount, page,
+         this.props.searchTerm, this.props.membersType);
    }
 
    render() {
@@ -30,9 +37,11 @@ class MembersContainer extends React.Component {
             totalMembersCount={this.props.totalMembersCount}
             totalFriendsCount={this.props.totalFriendsCount}
             followingInProgress={this.props.followingInProgress}
+            isAuth={this.props.isAuth}
             follow={this.props.follow}
             unfollow={this.props.unfollow}
-            pageChange={this.onPageChange.bind(this)} />
+            pageChange={this.onPageChange.bind(this)}
+            membersTypeChange={this.onMembersTypeChange.bind(this)} />
       );
    };
 }
@@ -44,12 +53,15 @@ const mapStateToProps = (state) => ({
    totalItemsCount: state.membersPage.totalItemsCount,
    totalMembersCount: state.membersPage.totalMembersCount,
    totalFriendsCount: state.membersPage.totalFriendsCount,
+   membersType: state.membersPage.membersType,
+   searchTerm: state.membersPage.searchTerm,
    followingInProgress: state.membersPage.followingInProgress,
    isFetching: state.membersPage.isFetching,
+   isAuth: state.authorization.isAuth,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-   setMembers: (count, page, term='', friend=null) => dispatch(setMembersThunkCreater(count, page, term, friend)),
+   setMembers: (count, page, term = '', friend = null) => dispatch(setMembersThunkCreater(count, page, term, friend)),
    follow: (id) => dispatch(followThunkCreater(id)),
    unfollow: (id) => dispatch(unfollowThunkCreater(id)),
 });
