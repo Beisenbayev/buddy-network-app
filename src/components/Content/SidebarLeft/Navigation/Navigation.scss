@@ -1,0 +1,40 @@
+.block {
+   background: #33363c;
+}
+.title {
+   color: #fff;
+   border-bottom: 1px solid lighten(#33363c, 20);
+}
+.link {
+   border-radius: 4px;
+   a {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-radius: 4px;
+      font-size: 14px;
+      letter-spacing: 1.2px;
+      color: #fff;
+      span {
+         margin-left: 10px;
+         &::first-letter {
+            text-transform: uppercase;
+         }
+      }
+   }
+   &:hover {
+      background: lighten(#26282d, 3)
+   }
+}
+.activeLink {
+   background: #26282d;
+}
+
+
+
+/*Laptops [1024px] */
+@media (max-width: 1024px) {
+   .block {
+      display: none;
+   }
+}

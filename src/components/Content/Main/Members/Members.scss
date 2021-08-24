@@ -1,0 +1,38 @@
+.listTabs {
+   margin: 0 -20px;
+   padding: 20px 0;
+   border-bottom: 1px solid #F0F0ED;
+   ul {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      overflow: hidden;
+   }
+}
+.listTabItem {
+   margin: 0;
+   padding: 10px;
+   border-radius: 8px;
+   font-weight: bold;
+   color: #274a5c;
+   cursor: pointer;
+   &:hover {
+      background-color: #F7F7F7;
+   }
+   b {
+      margin-left: 3px;
+      padding: 3px 5px;
+      border-radius: 3px;
+      font-size: 10px;
+      background: #33363C;
+      color: #fff;
+   }
+}
+.pagination {
+   margin: 0 -20px;
+   padding: 20px 0;
+   border-bottom: 1px solid #F0F0ED;
+   > div, > p {
+      padding: 0 20px;
+   }
+}

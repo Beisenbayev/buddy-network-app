@@ -1,0 +1,49 @@
+.block {
+  background: #33363c;
+}
+
+.title {
+  color: #fff;
+  border-bottom: 1px solid #626873;
+}
+
+.link {
+  border-radius: 4px;
+}
+
+.link a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  letter-spacing: 1.2px;
+  color: #fff;
+}
+
+.link a span {
+  margin-left: 10px;
+}
+
+.link a span::first-letter {
+  text-transform: uppercase;
+}
+
+.link:hover {
+  background: #2d2f35;
+}
+
+.activeLink {
+  background: #26282d;
+}
+
+/*Laptops [1024px] */
+@media (max-width: 1024px) {
+  .block {
+    display: none;
+  }
+}

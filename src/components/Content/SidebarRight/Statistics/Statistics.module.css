@@ -1,0 +1,39 @@
+.listItem {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  background: #C12F6C;
+  color: #fff;
+}
+
+.listItem:last-child {
+  margin-bottom: 0;
+}
+
+.listItem p {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.listItem p svg {
+  font-size: 18px;
+}
+
+.listItem p span {
+  margin-left: 5px;
+}

@@ -1,0 +1,64 @@
+.block {
+   position: relative;
+   z-index: 10000;
+   margin-bottom: 30px;
+   padding: 15px;
+   border-bottom-right-radius: 8px;
+   border-bottom-left-radius: 8px;
+   background: #33363c;
+}
+.fixedPadding {
+   position: absolute;
+   height: 90px;
+}
+.fixedPadding.isScrolling {
+   position: relative;
+}
+.top {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.buttons {
+   display: flex;
+}
+.logout {
+   background: #2f9bc1 !important;
+   &:hover {
+      background: #2a8cae !important;
+   }
+}
+.mobileNavButton {
+   display: none !important;
+   margin-left: 5px;
+   svg {
+      height: 12px;
+   }
+}
+.mobileNav {
+   display: none;
+   margin-top: 15px;
+   transition: all 0.8s;
+}
+
+
+
+/* Portrait tablets [992px] */
+@media (max-width: 1024px) {
+   .mobileNavButton {
+      display: inline-block !important;
+   }
+   .mobileNav.isShown {
+      display: block;
+      transition: all 0.8s;
+   }
+}
+
+/* Landscape phones [768px] */
+@media (max-width: 768px) {
+   .login,
+   .logout {
+      display: none !important;
+   }
+}

@@ -1,0 +1,26 @@
+.block {
+   display: grid;
+   grid-template-columns: 245px 1fr 245px;
+   grid-template-areas: 'sidebar-left main sidebar-right';
+   grid-column-gap: 20px;
+}
+
+
+/*Medium desktops [1200px] */
+@media (max-width: 1200px) {
+   .block {
+      grid-template-columns: 205px 1fr 205px;
+   }
+}
+
+
+/*Laptops [1024px] */
+@media (max-width: 1024px) {
+   .block {
+      grid-template-columns: 1fr;
+      grid-template-areas: 
+         'main'
+         'sidebar-right'
+         'sidebar-left';
+   }
+}

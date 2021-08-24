@@ -1,0 +1,25 @@
+.block {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 245px 1fr 245px;
+      grid-template-columns: 245px 1fr 245px;
+      grid-template-areas: 'sidebar-left main sidebar-right';
+  grid-column-gap: 20px;
+}
+
+/*Medium desktops [1200px] */
+@media (max-width: 1200px) {
+  .block {
+    -ms-grid-columns: 205px 1fr 205px;
+        grid-template-columns: 205px 1fr 205px;
+  }
+}
+
+/*Laptops [1024px] */
+@media (max-width: 1024px) {
+  .block {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+        grid-template-areas: 'main' 'sidebar-right' 'sidebar-left';
+  }
+}

@@ -1,0 +1,25 @@
+.newtworkLinks li {
+  margin-bottom: 5px;
+}
+
+.link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 14px;
+  color: #333;
+}
+
+.link i {
+  margin-right: 5px;
+  font-size: 21px;
+}
+
+.link a {
+  margin-left: 10px;
+  font-style: italic;
+  color: #000099;
+}

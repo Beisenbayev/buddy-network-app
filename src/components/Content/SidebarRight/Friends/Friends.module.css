@@ -1,0 +1,33 @@
+.block {
+  position: relative;
+}
+
+.followAdvice {
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.followAdvice a {
+  color: #2a5885;
+}
+
+.followAdvice a:hover {
+  text-decoration: underline;
+}
+
+.authAdvice {
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.authAdvice a {
+  color: #2a5885;
+}
+
+.authAdvice a:hover {
+  text-decoration: underline;
+}
+
+.authAdvice b {
+  color: #33363c;
+}

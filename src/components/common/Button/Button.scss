@@ -1,0 +1,25 @@
+.block {
+   position: relative;
+   display: inline-block;
+   padding: 9px 15px;
+   border-radius: 4px;
+   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+   font-size: 13px;
+   font-weight: bold;
+   line-height: 1;
+   background: #77af12;
+   color: #fff;
+   cursor: pointer;
+   
+   &:hover {
+      background: #679710;
+   }
+   &::first-letter {
+      text-transform: uppercase;
+   }
+   &:disabled {
+      background-color: #aaa;
+      color: #ffffff;
+      pointer-events: none;
+   }
+}

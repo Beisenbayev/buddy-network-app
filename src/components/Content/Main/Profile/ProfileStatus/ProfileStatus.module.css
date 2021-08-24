@@ -1,0 +1,16 @@
+.block > p {
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.2;
+  color: #333;
+}
+
+.noneStatus {
+  font-size: 12.5px;
+  line-height: 1;
+  color: #999;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}

@@ -1,0 +1,33 @@
+.block {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[14];
+      grid-template-columns: repeat(14, 1fr);
+  grid-gap: 5px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.block button {
+  padding: 5px 0;
+}
+
+.block button.isActive {
+  text-decoration: underline;
+  background: #C12F6C;
+  cursor: auto;
+  pointer-events: none;
+}
+
+.itemsCountInfo {
+  margin-top: 15px;
+}
+
+/* Landscape phones [768px] */
+@media (max-width: 768px) {
+  .block {
+    grid-gap: 2px;
+  }
+}

@@ -1,0 +1,25 @@
+.listItem {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 10px;
+   padding: 8px 10px;
+   border-radius: 4px;
+   font-size: 14px;
+   font-weight: bold;
+   background: #C12F6C;
+   color: #fff;
+   &:last-child {
+      margin-bottom: 0;
+   }
+   p {
+      display: inline-flex;
+      align-items: center;
+      svg {
+         font-size: 18px;
+      }
+      span {
+         margin-left: 5px;
+      }
+   }
+}

@@ -1,0 +1,40 @@
+.block {
+   position: relative;
+}
+.link {
+   position: relative;
+   border-top: 1px solid rgba( 255, 255, 255, 0.1 );
+   &:hover {
+      background: lighten(#26282d, 3);
+   }
+   a {
+      display: block;
+      padding: 15px 10px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+      &::first-letter {
+         text-transform: uppercase;
+      }
+   }
+}
+.activeLink {
+   background: #26282d;
+}
+.login,
+.logout {
+   border-radius: 6px;
+   text-align: center;
+}
+.login {
+   background: #77af12;
+   &:hover {
+      background: #679710;
+   }
+}
+.logout {
+   background: #2f9bc1;
+   &:hover {
+      background: #2a8cae;
+   }
+}

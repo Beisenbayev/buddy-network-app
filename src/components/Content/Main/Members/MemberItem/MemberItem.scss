@@ -1,0 +1,28 @@
+.block  {
+   display: flex;
+   padding: 15px 0;
+   border-bottom: 1px solid #F0F0ED;
+}
+.avatar {
+   width: 60px;
+   height: 60px;
+   margin-right: 15px;
+   img {
+      width: 100%;
+      height: 100%;
+      border-radius: 4px;
+   }
+}
+.info {
+   a {
+      font-size: 14px;
+      font-weight: 700;
+      color: #33363c;
+      &:hover {
+         text-decoration: underline;
+      }
+   }
+}
+.buttons {
+   margin-top: 7.5px;
+}

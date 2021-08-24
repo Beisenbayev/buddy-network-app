@@ -1,0 +1,86 @@
+.block {
+   display: grid;
+   grid-template-columns: 3.5fr 6.5fr;
+   grid-gap: 20px;
+   margin-bottom: 20px;
+}
+.avatar {
+   height: auto;
+   max-height: 185px;
+   margin-bottom: 10px;
+   img {
+      width: 100%;
+      height: 185px;
+      border-radius: 8px;
+   }
+}
+.buttons {
+   button {
+      width: 100%;
+   }
+}
+.rightSide {
+   position: relative;
+   width: 100%;
+   padding: 20px;
+   border-radius: 8px;
+   background: #fff;
+   overflow: hidden;
+}
+.userName {
+   margin: 0 -20px 20px -20px;
+   padding: 0 20px 15px 20px;
+   border-bottom: 1px solid #f0f0ed;
+   font-size: 20px;
+   font-weight: bold;
+   color: #33363c;
+}
+.aboutMe,
+.jobStatus {
+   b {
+      margin-right: 10px;
+      font-weight: bold;
+      color: #274a5c;
+   }
+   span {
+      user-select: none;
+   }
+}
+.jobStatus {
+   display: flex;
+   margin-top: 15px;
+   p {
+      display: inline-flex;
+      align-items: center;
+      i {
+         display: inline-block;
+         width: 15px;
+         height: 15px;
+         margin-right: 10px;
+         border-radius: 4px;
+      }
+   }
+}
+.lookingForAJob {
+   background: #77af12;
+}
+.notLookingForAJob {
+   background: #ee6537;
+}
+
+
+
+
+/*Laptops [1024px] */
+@media (max-width: 1024px) {
+   .block {
+      grid-template-columns: 3fr 7fr;
+   }
+}
+
+/* Medium phones [425px] */
+@media (max-width: 425px) {
+   .block {
+      grid-template-columns: 1fr;
+   }
+}

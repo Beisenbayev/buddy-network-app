@@ -1,0 +1,20 @@
+.block {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+/*Medium desktops [1200px] */
+@media (max-width: 1200px) {
+  .block {
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+}
+
+/*Laptops [1024px] */
+/* Portrait tablets [992px] */
+/* Landscape phones [768px] */
+/* Portrait phones [480px] */
+/* Iphone 5 */

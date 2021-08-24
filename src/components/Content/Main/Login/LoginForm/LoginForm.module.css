@@ -1,0 +1,58 @@
+.block > div {
+  margin-bottom: 20px;
+}
+
+.rememberMeArea {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.rememberMeArea input {
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+}
+
+.buttons button {
+  width: 100%;
+  height: 45px;
+  background: #2f9bc1;
+}
+
+.buttons button:hover {
+  background: #2a8cae;
+}
+
+.errorText {
+  margin-bottom: 10px;
+}
+
+.forgetPassword {
+  margin-bottom: 0 !important;
+  text-align: right;
+}
+
+.forgetPassword P {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 13px;
+  color: #000;
+  cursor: pointer;
+}
+
+.forgetPassword P:hover {
+  text-decoration: underline;
+  color: #2F9BC1;
+}
+
+.forgetPassword P span {
+  margin-left: 5px;
+}
