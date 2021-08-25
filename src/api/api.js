@@ -8,6 +8,8 @@ const instance = axios.create({
    }
 });
 
+//post-create, put-update, get-read, delete
+
 export const securityAPI = {
    getCaptchaUrlRequest: () => {
       return instance.get('/security/get-captcha-url')
@@ -33,18 +35,6 @@ export const authorizationAPI = {
 export const membersAPI = {
    getMembersRequest: (count, page, term, friend) => {
       return instance.get(`users?count=${count}&page=${page}&term=${term}&friend=${friend}`)
-         .then(response => response.data)
-   },
-   getFollowingInfoRequest: (id) => {
-      return instance.get(`follow/${id}`)
-         .then(response => response.data)
-   },
-   followRequest: (id) => {
-      return instance.post(`follow/${id}`)
-         .then(response => response.data)
-   },
-   unfollowRequest: (id) => {
-      return instance.delete(`follow/${id}`)
          .then(response => response.data)
    },
 }
@@ -88,4 +78,39 @@ export const profileAPI = {
       })
          .then(response => response.data)
    },
+}
+
+export const messagesAPI = {
+   getDialogsRequest: () => {
+      return instance.get('dialogs')
+         .then(response => response.data);
+   },
+   getMessagesRequest: (id, count, page) => {
+      return instance.get(`dialogs/${id}/messages?count=${count}&page=${page}`)
+         .then(response => response.data)
+   },
+   sendMessageRequest: (id, text) => {
+      return instance.post(`dialogs/${id}/messages`, { data: text })
+         .then(response => response.data)
+   },
+   getMessageStateRequest: (messageId) => { //to show was the message viewed
+      return instance.get(`dialogs/messages/${messageId}/viewed`)
+         .then(response => response.data)
+   },
+   deleteMessageRequest: (messageId) => {
+      return instance.delete(`dialogs/messages/${messageId}`)
+         .then(response => response.data)
+   },
+   spamMessageRequest: (messageId) => { //spamming useless message
+      return instance.post(`dialogs/messages/${messageId}/spam`, {})
+         .then(response => response.data)
+   },
+   restoreMessageRequest: (messageId) => { //restoring deleted or spammed message
+      return instance.put(`dialogs/messages/${messageId}/restore`,)
+         .then(response => response.data)
+   },
+   getNewMessagesCountRequest: () => { //for the main page, to show count of users new messages
+      return instance.get('dialogs/messages/new/count')
+         .then(response => response.data)
+   }
 }

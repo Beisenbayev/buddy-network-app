@@ -1,4 +1,4 @@
-import { membersAPI } from '../../api/api.js';
+import { membersAPI, followAPI } from '../../api/api.js';
 import { setFollowedThunkCreater } from './profile-reducer';
 
 const membersID = 'buddy/members';
@@ -128,7 +128,7 @@ export const setNewcomersThunkCreater = (count) => {
 export const followThunkCreater = (id) => {
    return async (dispatch) => {
       dispatch(toggleFollowingProgressAC(true, id));
-      const response = await membersAPI.followRequest(id);
+      const response = await followAPI.followRequest(id);
       if (response.resultCode === 0) {
          dispatch(toggleFollowingAC(id, true));
          dispatch(setFriendsThunkCreater(5, 1));
@@ -141,7 +141,7 @@ export const followThunkCreater = (id) => {
 export const unfollowThunkCreater = (id) => {
    return async (dispatch) => {
       dispatch(toggleFollowingProgressAC(true, id));
-      const response = await membersAPI.unfollowRequest(id);
+      const response = await followAPI.unfollowRequest(id);
       if (response.resultCode === 0) {
          dispatch(toggleFollowingAC(id, false));
          dispatch(setFriendsThunkCreater(5, 1));

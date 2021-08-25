@@ -1,5 +1,5 @@
 import { stopSubmit } from 'redux-form';
-import { membersAPI, profileAPI } from '../../api/api.js';
+import { followAPI, profileAPI } from '../../api/api.js';
 
 const profileID = 'buddy/profile'
 const SET_PROFILE = `${profileID}/SET_PROFILE`;
@@ -62,7 +62,7 @@ export const setStatusThunkCreater = (id) => {
 
 export const setFollowedThunkCreater = (id) => {
    return async (dispatch) => {
-      const response = await membersAPI.getFollowingInfoRequest(id);
+      const response = await followAPI.getFollowingInfoRequest(id);
       dispatch(setFollowedAC(response));
    }
 }
