@@ -3,8 +3,10 @@ import { Switch, Route } from 'react-router-dom';
 import s from './Main.module.css';
 
 import LoginContainer from './Login/LoginContainer';
-import MembersContainer from './Members/MembersContainer';
 import ProfileContainer from './Profile/ProfileContainer';
+import MembersContainer from './Members/MembersContainer';
+import SettingsContainer from './Settings/SettingsContainer';
+
 
 const Hello = (props) => {
    return (
@@ -20,6 +22,7 @@ const Main = (props) => {
             <Route path='/login' render={() => <LoginContainer />} />
             <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
             <Route path='/members' render={() => <MembersContainer />} />
+            <Route path='/settings' render={() => <SettingsContainer />} />
             <Route path='/' render={() => <Hello />} />
          </Switch>
       </main>

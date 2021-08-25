@@ -1,0 +1,22 @@
+.block {
+   padding: 20px 0 19px;
+   border-bottom: 1px solid #F0F0ED;
+}
+.editingLine {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   h3 {
+      font-size: 15px;
+      color: #274a5c;
+   }
+   span {
+      font-size: 14px;
+      font-weight: 400px;
+      color: #2a5885;
+      cursor: pointer;
+      &:hover {
+         text-decoration: underline;
+      }
+   }
+}

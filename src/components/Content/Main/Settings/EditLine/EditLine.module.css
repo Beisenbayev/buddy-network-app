@@ -1,0 +1,32 @@
+.block {
+  padding: 20px 0 19px;
+  border-bottom: 1px solid #F0F0ED;
+}
+
+.editingLine {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.editingLine h3 {
+  font-size: 15px;
+  color: #274a5c;
+}
+
+.editingLine span {
+  font-size: 14px;
+  font-weight: 400px;
+  color: #2a5885;
+  cursor: pointer;
+}
+
+.editingLine span:hover {
+  text-decoration: underline;
+}
