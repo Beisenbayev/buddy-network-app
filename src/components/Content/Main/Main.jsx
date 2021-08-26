@@ -4,6 +4,8 @@ import s from './Main.module.css';
 
 import LoginContainer from './Login/LoginContainer';
 import ProfileContainer from './Profile/ProfileContainer';
+import DialogsContainer from './Dialogs/DialogsContainer';
+import MessagesContainer from './Messages/MessagesContainer';
 import MembersContainer from './Members/MembersContainer';
 import SettingsContainer from './Settings/SettingsContainer';
 
@@ -21,6 +23,8 @@ const Main = (props) => {
          <Switch>
             <Route path='/login' render={() => <LoginContainer />} />
             <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+            <Route exact path='/messages' render={() => <DialogsContainer />} />
+            <Route path='/messages/:userId?' render={() => <MessagesContainer />} />
             <Route path='/members' render={() => <MembersContainer />} />
             <Route path='/settings' render={() => <SettingsContainer />} />
             <Route path='/' render={() => <Hello />} />

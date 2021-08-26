@@ -1,6 +1,7 @@
 import { setUserDataThunkCreater } from './auth-reducer.js';
 import { setFriendsThunkCreater } from './members-reducer.js';
 import { setNewcomersThunkCreater } from './members-reducer.js';
+import { setNewMessagesCountThunkCreater } from './messages-reducer.js';
 
 const INITIALIZATION = 'buddy/INITIALIZATION';
 
@@ -25,7 +26,8 @@ export const initializeThunkCreate = () => {
       Promise.all([
          dispatch(setUserDataThunkCreater()),
          dispatch(setFriendsThunkCreater(5, 1)),
-         dispatch(setNewcomersThunkCreater(5))
+         dispatch(setNewcomersThunkCreater(5)),
+         //dispatch(setNewMessagesCountThunkCreater()),
       ])
          .then(() => dispatch(initializeAC()));
    }

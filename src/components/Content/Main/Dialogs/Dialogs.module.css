@@ -1,0 +1,17 @@
+.startChatAdvice {
+  margin-top: 20px;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.startChatAdvice a {
+  color: #2a5885;
+}
+
+.startChatAdvice a:hover {
+  text-decoration: underline;
+}
+
+.startChatAdvice b {
+  color: #33363c;
+}

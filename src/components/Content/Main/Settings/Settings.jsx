@@ -7,8 +7,8 @@ import EditAvatarForm from './EditForms/EditAvatarForm';
 
 const Settings = (props) => {
    return (
-      <div className={cn(s.block, 'widget')}>
-         <h1 className={cn(s.title, 'widget__title')}>Settings</h1>
+      <div className={cn(s.block, 'main-page')}>
+         <h1 className={cn(s.title, 'main-page__title')}>Settings</h1>
          <div className={s.panel}>
             <EditLine title={'Avatar'}>
                <EditAvatarForm />

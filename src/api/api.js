@@ -81,6 +81,10 @@ export const profileAPI = {
 }
 
 export const messagesAPI = {
+   startСhattingRequest: (userId) => {
+      return instance.put(`dialogs/${userId}`)
+         .then(response => response.data)
+   },
    getDialogsRequest: () => {
       return instance.get('dialogs')
          .then(response => response.data);

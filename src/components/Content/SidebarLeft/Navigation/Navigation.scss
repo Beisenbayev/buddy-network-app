@@ -6,7 +6,11 @@
    border-bottom: 1px solid lighten(#33363c, 20);
 }
 .link {
+   position: relative;
+   margin-bottom: 2px;
    border-radius: 4px;
+   cursor: pointer;
+   user-select: none;
    a {
       display: flex;
       align-items: center;
@@ -25,6 +29,15 @@
    &:hover {
       background: lighten(#26282d, 3)
    }
+}
+.notificationCount {
+   position: absolute;
+   right: 5px;
+   padding: 3px 3.2px 1.7px 5px;
+   border-radius: 25px;
+   font-weight: 400 !important;
+   background: #C12F6C;
+   color: #fff;
 }
 .activeLink {
    background: #26282d;

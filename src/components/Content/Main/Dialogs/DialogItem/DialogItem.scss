@@ -1,0 +1,44 @@
+.block {
+   position: relative;
+   display: flex;
+   padding: 10px 0;
+   border-bottom: 1px solid #F0F0ED;
+   &:hover {
+      background: #b6bec91f;
+   }
+}
+.block.isHighlighted {
+   background: #E4ECF1;
+}
+.avatar {
+   width: 50px;
+   height: 50px;
+   margin-right: 15px;
+   img {
+      width: 100%;
+      height: 100%;
+      border-radius: 4px;
+   }
+}
+.info {
+   display: inline-flex;
+   h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #33363c;
+   }
+   .lastDialogDate {
+      position: absolute;
+      right: 0;
+      color: #999;
+   }
+}
+.newMessagesCount {
+   position: absolute;
+   top: calc(60% - 9px);
+   right: 0px;
+   height: 17px;
+   padding: 3.1px 4px 2px 5px;
+   background: #2f9bc1;
+   color: #fff;
+}

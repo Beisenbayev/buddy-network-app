@@ -14,19 +14,24 @@ const Navigation = (props) => {
          <ul className={s.list}>
             <li className={s.link}>
                <NavLink to='/profile'
-                  activeClassName={s.activeLink}><FaUserAlt /> <span>profile</span></NavLink>
+                  activeClassName={s.activeLink}><FaUserAlt /> <span>profile</span>
+               </NavLink>
             </li>
             <li className={s.link}>
                <NavLink to='/messages'
-                  activeClassName={s.activeLink}><FaCommentAlt /> <span>messages</span></NavLink>
+                  activeClassName={s.activeLink}><FaCommentAlt /> <span>messages</span>
+                  <b className={s.notificationCount}>{props.newMessagesCount}</b>
+               </NavLink>
             </li>
             <li className={s.link}>
                <NavLink to='/members'
-                  activeClassName={s.activeLink}><FaUsers /> <span>members</span></NavLink>
+                  activeClassName={s.activeLink}><FaUsers /> <span>members</span>
+               </NavLink>
             </li>
             <li className={s.link}>
                <NavLink to='/settings'
-                  activeClassName={s.activeLink}><FaCog /> <span>settings</span></NavLink>
+                  activeClassName={s.activeLink}><FaCog /> <span>settings</span>
+               </NavLink>
             </li>
          </ul>
       </div>
