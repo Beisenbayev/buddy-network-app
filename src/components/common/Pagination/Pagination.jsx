@@ -28,24 +28,29 @@ const Pagination = (props) => {
          onClick={() => props.pageChange(page)} />
    });
 
+   const available = props.totalItemsCout > 0;
+
+   if (!available) return <p>Sorry, nothing was found.</p>
+
    return (
-      <><div className={s.block}>
-         <Button text={'<<'}
-            disabled={currentPortion === 0}
-            onClick={() => setCurrentPortion(0)} />
-         <Button text={'<'}
-            disabled={currentPortion === 0}
-            onClick={() => setCurrentPortion(currentPortion - 1)} />
-         {pagination}
-         <Button text={'>'}
-            disabled={currentPortion === (portionsCount - 1)}
-            onClick={() => setCurrentPortion(currentPortion + 1)} />
-         <Button text={'>>'}
-            disabled={currentPortion === (portionsCount - 1)}
-            onClick={() => setCurrentPortion(portionsCount - 1)} />
-      </div>
-         <p className={s.itemsCountInfo}>Viewing {itemsFirstElem}- 
-          {itemsLastElem} of {props.totalItemsCout} {props.listName}</p>
+      <>
+         <div className={s.block}>
+            <Button text={'<<'}
+               disabled={currentPortion === 0}
+               onClick={() => setCurrentPortion(0)} />
+            <Button text={'<'}
+               disabled={currentPortion === 0}
+               onClick={() => setCurrentPortion(currentPortion - 1)} />
+            {pagination}
+            <Button text={'>'}
+               disabled={currentPortion === (portionsCount - 1)}
+               onClick={() => setCurrentPortion(currentPortion + 1)} />
+            <Button text={'>>'}
+               disabled={currentPortion === (portionsCount - 1)}
+               onClick={() => setCurrentPortion(portionsCount - 1)} />
+         </div>
+         <p className={s.itemsCountInfo}>Viewing {itemsFirstElem} -
+            {itemsLastElem} of {props.totalItemsCout} {props.listName}</p>
       </>
    );
 }

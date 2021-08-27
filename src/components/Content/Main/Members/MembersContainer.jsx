@@ -17,8 +17,11 @@ class MembersContainer extends React.Component {
    }
 
    onMembersTypeChange(type) {
-      this.props.setMembers(this.props.pageItemsCount, 1,
-         this.props.searchTerm, type);
+      this.props.setMembers(this.props.pageItemsCount, 1, '', type);
+   }
+
+   onMembersSearch(term) {
+      this.props.setMembers(this.props.pageItemsCount, 1, term, null);
    }
 
    onPageChange(page) {
@@ -41,7 +44,8 @@ class MembersContainer extends React.Component {
             follow={this.props.follow}
             unfollow={this.props.unfollow}
             pageChange={this.onPageChange.bind(this)}
-            membersTypeChange={this.onMembersTypeChange.bind(this)} />
+            membersTypeChange={this.onMembersTypeChange.bind(this)}
+            membersSearch={this.onMembersSearch.bind(this)} />
       );
    };
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import s from './Members.module.css';
 
+import MembersSearchForm from './MembersSearchForm/MembersSearchForm';
 import Pagination from '../../../common/Pagination/Pagination';
 import MemberItem from './MemberItem/MemberItem';
 
@@ -22,6 +23,9 @@ const Members = (props) => {
    return (
       <div className={cn(s.block, 'main-page')}>
          <h1 className={cn(s.title, 'main-page__title')}>Members</h1>
+         <div className={s.searchPanel}>
+            <MembersSearchForm membersSearch={props.membersSearch} />
+         </div>
          <div className={s.listTabs}>
             <ul>
                <li className={s.listTabItem} onClick={() => props.membersTypeChange(null)}>

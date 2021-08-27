@@ -1,7 +1,8 @@
 .block {
    position: relative;
    display: flex;
-   padding: 10px 0;
+   margin: 0 -20px;
+   padding: 10px;
    border-bottom: 1px solid #F0F0ED;
    &:hover {
       background: #b6bec91f;
@@ -29,14 +30,14 @@
    }
    .lastDialogDate {
       position: absolute;
-      right: 0;
+      right: 10px;
       color: #999;
    }
 }
 .newMessagesCount {
    position: absolute;
    top: calc(60% - 9px);
-   right: 0px;
+   right: 10px;
    height: 17px;
    padding: 3.1px 4px 2px 5px;
    background: #2f9bc1;
