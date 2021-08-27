@@ -1,4 +1,3 @@
-import { stopSubmit } from 'redux-form';
 import { followAPI, profileAPI } from '../../api/api.js';
 
 const profileID = 'buddy/profile'
@@ -74,7 +73,6 @@ export const updateProfileThunkCreater = (data, getState) => {
       if (response.resultCode === 0) dispatch(setProfileThunkCreater(id));
       else {
          const errorMessage = (response.messages.length > 0) && response.messages[0];
-         dispatch(stopSubmit('profileForm', { _error: errorMessage }));
       }
    }
 }
@@ -85,7 +83,6 @@ export const updateStatusThunkCreater = (status) => {
       if (response.resultCode === 0) dispatch(setStatusThunkCreater(status));
       else {
          const errorMessage = (response.messages.length > 0) && response.messages[0];
-         dispatch(stopSubmit('statusForm', { _error: errorMessage }));
       }
    }
 }
@@ -96,7 +93,6 @@ export const updateAvatarThunkCreater = (avatar) => {
       if (response.resultCode === 0) dispatch(setAvatarAC(response.photos));
       else {
          const errorMessage = (response.messages.length > 0) && response.messages[0];
-         dispatch(stopSubmit('avatarForm', { _error: errorMessage }));
       }
    }
 }

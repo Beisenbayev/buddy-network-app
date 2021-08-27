@@ -18,9 +18,9 @@ const Login = (props) => {
       <div className={cn(s.block, 'main-page')}>
          <h2 className={cn(s.title, 'main-page__title')}>Sign In</h2>
          <LoginForm captchaUrl={props.captchaUrl}
-            isSubmiting={props.isSubmiting}
             toggleShownResetPassArea={toggleShownResetPassArea}
-            onSubmit={props.sendLoginData} />
+            isSubmiting={props.isSubmiting}
+            sendLoginData={props.sendLoginData} />
          {shownResetPassArea &&
             <ResetPasswordForm
                toggleShownResetPassArea={toggleShownResetPassArea} />

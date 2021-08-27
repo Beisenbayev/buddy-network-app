@@ -1,4 +1,3 @@
-import { stopSubmit } from 'redux-form';
 import { authorizationAPI } from '../../api/api.js';
 import { securityAPI } from '../../api/api.js';
 import { profileAPI } from '../../api/api.js';
@@ -60,7 +59,7 @@ export const setUserAvatarThunkCreater = (id) => {
       dispatch(setUserAvatarAC(response.photos.small));
    }
 }
-
+// use promise reject( error message ), if resultCode != 0
 export const loginThunkCreater = (email, password, rememberMe, captcha = null) => {
    return async (dispatch) => {
       dispatch(toggleIsSubmitingAC(true));
@@ -72,7 +71,6 @@ export const loginThunkCreater = (email, password, rememberMe, captcha = null) =
       else {
          if (response.resultCode === 10) dispatch(setCaptchaUrlThunkCreater());
          const errorMessage = (response.messages.length > 0) && response.messages[0];
-         dispatch(stopSubmit('loginForm', { _error: errorMessage }));
       }
       dispatch(toggleIsSubmitingAC(false));
    }

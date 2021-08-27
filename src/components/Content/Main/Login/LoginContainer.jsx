@@ -7,7 +7,7 @@ import { loginThunkCreater } from '../../../../redux/reducers/auth-reducer.js';
 import Login from './Login';
 
 class LoginContainer extends React.Component {
-   sendLoginData(formData) {
+   onSendLoginData(formData) {
       const {email, password, rememberMe, captcha} = formData;
       this.props.login(email, password, rememberMe, captcha);
    }
@@ -18,7 +18,7 @@ class LoginContainer extends React.Component {
       return (
          <Login captchaUrl={this.props.captchaUrl}
             isSubmiting={this.props.isSubmiting}
-            sendLoginData={this.sendLoginData.bind(this)} />
+            sendLoginData={this.onSendLoginData.bind(this)} />
       );
    };
 }

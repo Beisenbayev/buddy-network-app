@@ -1,64 +1,78 @@
 import React from 'react';
-import { reduxForm, Field } from 'redux-form';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 import { FaQuestionCircle } from 'react-icons/fa';
-import {
-   required, maxLengthCreater, minLengthCreater
-} from '../../../../../utils/validators.js';
 import s from './LoginForm.module.css';
 
-import Input from '../../../../common/FormComponents/Input/Input.jsx';
+import { MyInput, MyCheckbox } from '../../../../common/FormComponents/FormComponents';
 import Button from '../../../../common/Button/Button';
-
-const minLength5 = minLengthCreater(5);
-const maxLength30 = maxLengthCreater(30);
 
 const LoginForm = (props) => {
    return (
-      <form className={s.block} onSubmit={props.handleSubmit} >
-         <div className={s.loginArea}>
-            <Field name={'email'}
-               component={Input}
-               type={'email'}
-               placeholder={'Email'}
-               validate={[required, maxLength30, minLength5]} />
-         </div>
-         <div className={s.passwordArea}>
-            <Field name={'password'}
-               component={Input}
-               type={'password'}
-               placeholder={'Password'}
-               validate={[required]} />
-         </div>
-         <div className={s.rememberMeArea}>
-            <Field name={'rememberMe'}
-               component={'input'}
-               type={'checkbox'} />
-            <span>Remember me</span>
-         </div>
-         {props.captchaUrl &&
-            <div className={s.captchaArea}>
-               <img src={props.captchaUrl} alt="" />
-               <Field name={'captcha'}
-                  component={Input}
-                  placeholder={'captha symbols'}
-                  validate={[required]} />
+      <Formik
+         initialValues={{
+            email: '',
+            password: '',
+            rememberMe: false,
+            captcha: '',
+         }}
+         validationSchema={Yup.object({
+            email: Yup.string()
+               .required('Required field!')
+               .max(35, 'Must be 35 characters or less!')
+               .min(5, 'Must be 5 characters or more!'),
+            password: Yup.string()
+               .required('Required field!')
+               .max(25, 'Must be 25 characters or less!')
+               .min(6, 'Must be 6 characters or more!'),
+         })}
+         onSubmit={(values) => props.sendLoginData(values)}>
+         {/*use {setSubmitting, setFieldError, setStatus} to show API errors */}
+
+         <Form className={s.block}>
+            <div className={s.loginArea}>
+               <MyInput name={'email'}
+                  type={'email'}
+                  placeholder={'Email'} />
             </div>
-         }
-         <div className={s.buttons}>
-            <Button text={'Sign In'} disabled={props.isSubmiting} />
-         </div>
-         {props.isSubmiting && <p>Verifying...</p>}
-         {props.error && <p className={s.errorText}>{props.error}</p>}
-         <div className={s.forgetPassword}>
-            <p onClick={props.toggleShownResetPassArea}>
-               <FaQuestionCircle /><span>Forget Password</span>
-            </p>
-         </div>
-      </form>
+
+            <div className={s.passwordArea}>
+               <MyInput name={'password'}
+                  type={'password'}
+                  placeholder={'Password'} />
+            </div>
+
+            <div className={s.rememberMeArea}>
+               <MyCheckbox name={'rememberMe'}>
+                  <span>Remember me</span>
+               </MyCheckbox>
+            </div>
+
+            {props.captchaUrl &&
+               <div className={s.captchaArea}>
+                  <img src={props.captchaUrl} alt="" />
+                  <MyInput name={'captcha'}
+                     type={'text'}
+                     placeholder={'Captha symbols'} />
+               </div>
+            }
+
+            <div className={s.buttons}>
+               <Button type="submit" text={'Sign In'} disabled={props.isSubmiting} />
+            </div>
+
+            {props.isSubmiting && <p>Verifying...</p>}
+            {/* {props.error && <p className={s.errorText}>{props.error}</p>} */}
+
+            <div className={s.forgetPassword}>
+               <p onClick={props.toggleShownResetPassArea}>
+                  <FaQuestionCircle /><span>Forget Password</span>
+               </p>
+            </div>
+         </Form>
+      </Formik>
    );
 }
 
 
-export default reduxForm({
-   form: 'loginForm'
-})(LoginForm);
+export default LoginForm;
