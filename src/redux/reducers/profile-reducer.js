@@ -1,4 +1,5 @@
 import { followAPI, profileAPI } from '../../api/api.js';
+import { setUserAvatarThunkCreater } from './auth-reducer.js';
 
 const profileID = 'buddy/profile'
 const SET_PROFILE = `${profileID}/SET_PROFILE`;
@@ -66,9 +67,9 @@ export const setFollowedThunkCreater = (id) => {
    }
 }
 
-export const updateProfileThunkCreater = (data, getState) => {
-   return async (dispatch) => {
-      const id = getState.authorization.id;
+export const updateProfileThunkCreater = (data) => {
+   return async (dispatch, getState) => {
+      const id = getState().authorization.id;
       const response = await profileAPI.updateProfileRequest(data);
       if (response.resultCode === 0) dispatch(setProfileThunkCreater(id));
       else {
@@ -80,7 +81,7 @@ export const updateProfileThunkCreater = (data, getState) => {
 export const updateStatusThunkCreater = (status) => {
    return async (dispatch) => {
       const response = await profileAPI.updateStatusRequest(status);
-      if (response.resultCode === 0) dispatch(setStatusThunkCreater(status));
+      if (response.resultCode === 0) dispatch(setStatusAC(status));
       else {
          const errorMessage = (response.messages.length > 0) && response.messages[0];
       }
@@ -88,10 +89,14 @@ export const updateStatusThunkCreater = (status) => {
 }
 
 export const updateAvatarThunkCreater = (avatar) => {
-   return async (dispatch) => {
+   return async (dispatch, getState) => {
+      const id = getState().authorization.id;
       const response = await profileAPI.updateAvatarRequest(avatar);
-      if (response.resultCode === 0) dispatch(setAvatarAC(response.photos));
-      else {
+      if (response.resultCode === 0) {
+         dispatch(setAvatarAC(response.data.photos));
+         //just for experiment, you shoud replace it with callback [setAvatarAC] from auth-reducer
+         dispatch(setUserAvatarThunkCreater(id));
+      } else {
          const errorMessage = (response.messages.length > 0) && response.messages[0];
       }
    }

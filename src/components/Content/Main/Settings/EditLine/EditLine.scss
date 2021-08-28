@@ -15,6 +15,7 @@
       font-weight: 400px;
       color: #2a5885;
       cursor: pointer;
+      user-select: none;
       &:hover {
          text-decoration: underline;
       }

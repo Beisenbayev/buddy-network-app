@@ -72,7 +72,8 @@ export const profileAPI = {
          .then(response => response.data)
    },
    updateAvatarRequest: (avatar) => {
-      const formData = new FormData().append("image", avatar);
+      const formData = new FormData();
+      formData.append("image", avatar);
       return instance.put('profile/photo', formData, {
          headers: { 'Content-Type': 'multipart/form-data' }
       })

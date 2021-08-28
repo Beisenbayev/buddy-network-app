@@ -25,6 +25,10 @@
   font-weight: 400px;
   color: #2a5885;
   cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .editingLine span:hover {

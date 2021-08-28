@@ -1,1 +1,33 @@
-/* No CSS */
+.block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 20px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.currentAvatar {
+  width: 80px;
+  min-width: 80px;
+  height: 80px;
+  margin-right: 20px;
+}
+
+.currentAvatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+}
+
+.fileInput .errorMessage {
+  display: block;
+  padding: 5px 0 0;
+  color: #ac5454;
+}
+
+.buttons {
+  margin-top: 10px;
+}

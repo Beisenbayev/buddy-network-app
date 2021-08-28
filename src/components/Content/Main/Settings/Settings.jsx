@@ -11,7 +11,8 @@ const Settings = (props) => {
          <h1 className={cn(s.title, 'main-page__title')}>Settings</h1>
          <div className={s.panel}>
             <EditLine title={'Avatar'}>
-               <EditAvatarForm />
+               <EditAvatarForm profile={props.profile}
+                  updateAvatar={props.updateAvatar} />
             </EditLine>
             <EditLine title={'Status'}>
                <EditAvatarForm />
