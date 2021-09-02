@@ -4,6 +4,7 @@ import s from './Settings.module.css';
 
 import EditLine from './EditLine/EditLine';
 import EditAvatarForm from './EditForms/EditAvatarForm';
+import EditStatusForm from './EditForms/EditStatusForm';
 
 const Settings = (props) => {
    return (
@@ -15,7 +16,8 @@ const Settings = (props) => {
                   updateAvatar={props.updateAvatar} />
             </EditLine>
             <EditLine title={'Status'}>
-               <EditAvatarForm />
+               <EditStatusForm status={props.status}
+                  updateStatus={props.updateStatus} />
             </EditLine>
             <EditLine title={'Data'}>
                <EditAvatarForm />

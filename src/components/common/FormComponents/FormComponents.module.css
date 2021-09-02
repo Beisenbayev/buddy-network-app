@@ -1,7 +1,6 @@
-.textInput input {
+.textInput input, .textArea textarea {
   width: 100%;
   max-width: 100%;
-  height: 45px;
   padding: 8px 10px;
   border: 1px solid #f7f7f7;
   border-radius: 4px;
@@ -10,12 +9,24 @@
   color: #333;
 }
 
-.textInput input:focus {
+.textInput input:focus, .textArea textarea:focus {
   background-color: #fff;
   border: 1px solid #ccc;
 }
 
+.textInput input {
+  height: 45px;
+}
+
 .textInput input.hasError {
+  border: 1px solid #ac5454;
+}
+
+.textArea textarea {
+  height: 80px;
+}
+
+.textArea textarea.hasError {
   border: 1px solid #ac5454;
 }
 

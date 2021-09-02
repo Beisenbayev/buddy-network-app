@@ -68,7 +68,7 @@ export const profileAPI = {
          .then(response => response.data)
    },
    updateStatusRequest: (status) => {
-      return instance.put('profile/status', status)
+      return instance.put('profile/status', { status })
          .then(response => response.data)
    },
    updateAvatarRequest: (avatar) => {

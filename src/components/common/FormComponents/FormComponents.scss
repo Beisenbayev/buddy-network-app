@@ -1,23 +1,38 @@
+%main-input-data {
+   width: 100%;
+   max-width: 100%;
+   padding: 8px 10px;
+   border: 1px solid #f7f7f7;
+   border-radius: 4px;
+   font-size: 12.5px;
+   background: #f7f7f7;
+   color: #333;
+   &:focus {
+      background-color: #fff;
+      border: 1px solid #ccc;
+   }
+}
+
 .textInput {
    input {
-      width: 100%;
-      max-width: 100%;
+      @extend %main-input-data;
       height: 45px;
-      padding: 8px 10px;
-      border: 1px solid #f7f7f7;
-      border-radius: 4px;
-      font-size: 12.5px;
-      background: #f7f7f7;
-      color: #333;
-      &:focus {
-         background-color: #fff;
-         border: 1px solid #ccc;
-      }
    }
    input.hasError {
       border: 1px solid #ac5454;
    }
 }
+
+.textArea {
+   textarea {
+      @extend %main-input-data;
+      height: 80px;
+   }
+   textarea.hasError {
+      border: 1px solid #ac5454;
+   }
+}
+
 .checkbox {
    display: inline-flex;
    align-items: center;
@@ -27,6 +42,7 @@
       margin-right: 10px;
    }
 }
+
 .errorMessage {
    display: inline-block;
    padding: 5px 10px 0;

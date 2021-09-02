@@ -1,1 +1,7 @@
-/* No CSS */
+.block div {
+  margin-top: 15px;
+}
+
+.buttons {
+  text-align: right;
+}
