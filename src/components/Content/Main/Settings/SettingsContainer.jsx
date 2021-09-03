@@ -18,7 +18,7 @@ class SettingsContainer extends React.Component {
    }
 
    render() {
-      if(this.props.isFetching ) return <Preloader />
+      if (this.props.isFetching) return <Preloader />
 
       return (
          <Settings profile={this.props.profile}

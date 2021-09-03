@@ -1,1 +1,12 @@
-/* No CSS */
+.block > div {
+  margin-top: 15px;
+}
+
+.jobStatus {
+  font-size: 14px;
+  color: #333;
+}
+
+.buttons {
+  text-align: right;
+}

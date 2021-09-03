@@ -14,7 +14,7 @@ const EditStatusForm = (props) => {
          }}
          validationSchema={Yup.object({
             status: Yup.string()
-               .required()
+               .required('Required field!')
                .max(300, 'Must be 300 characters or less!')
          })}
          onSubmit={({ status }, { setSubmitting }) => {

@@ -9,6 +9,7 @@ export const MyInput = ({ label, ...props }) => {
 
    return (
       <div className={s.textInput}>
+         {label && <label className={s.label}>{label}</label>}
          <input className={cn({ [s.hasError]: error })} {...field} {...props} />
          {error && <span className={s.errorMessage}>{meta.error}</span>}
       </div>
@@ -21,6 +22,7 @@ export const MyTextarea = ({ label, ...props }) => {
 
    return (
       <div className={s.textArea}>
+         {label && <label className={s.label}>{label}</label>}
          <textarea className={cn({ [s.hasError]: error })} {...field} {...props} />
          {error && <span className={s.errorMessage}>{meta.error}</span>}
       </div>

@@ -69,9 +69,12 @@ export const setFollowedThunkCreater = (id) => {
 
 export const updateProfileThunkCreater = (data) => {
    return async (dispatch, getState) => {
-      const id = getState().authorization.id;
+      console.log('thunk')
       const response = await profileAPI.updateProfileRequest(data);
-      if (response.resultCode === 0) dispatch(setProfileThunkCreater(id));
+      if (response.resultCode === 0) {
+         const id = getState().authorization.id;
+         dispatch(setProfileThunkCreater(id));
+      }
       else {
          const errorMessage = (response.messages.length > 0) && response.messages[0];
       }
