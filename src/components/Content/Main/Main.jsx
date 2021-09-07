@@ -8,25 +8,20 @@ import DialogsContainer from './Dialogs/DialogsContainer';
 import MessagesContainer from './Messages/MessagesContainer';
 import MembersContainer from './Members/MembersContainer';
 import SettingsContainer from './Settings/SettingsContainer';
-
-
-const Hello = (props) => {
-   return (
-      <div>Hello, world!</div>
-   );
-}
+import NotFound from './NotFound/NotFound';
 
 const Main = (props) => {
    return (
       <main className={s.block}>
-         <Switch> {/*add not found page*/}
+         <Switch>
             <Route path='/login' render={() => <LoginContainer />} />
             <Route path='/profile/:userId?' render={() => <ProfileContainer />} />    {/*change profile navLink*/}
             <Route exact path='/messages' render={() => <DialogsContainer />} />
             <Route path='/messages/:userId' render={() => <MessagesContainer />} />
             <Route path='/members' render={() => <MembersContainer />} />
             <Route path='/settings' render={() => <SettingsContainer />} />
-            <Route path='/' render={() => <Hello />} />
+            <Route exact path='/' render={() => <HomeContainer />} />
+            <Route render={() => <NotFound />} />
          </Switch>
       </main>
    );

@@ -1,0 +1,17 @@
+.block {
+  text-align: center;
+}
+
+.block h2 {
+  font-size: 100px;
+}
+
+.block h3 {
+  margin-bottom: 10px;
+  font-size: 52px;
+  color: #33363c;
+}
+
+.block button {
+  margin-top: 30px;
+}
