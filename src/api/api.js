@@ -95,7 +95,7 @@ export const messagesAPI = {
          .then(response => response.data)
    },
    sendMessageRequest: (id, text) => {
-      return instance.post(`dialogs/${id}/messages`, { data: text })
+      return instance.post(`dialogs/${id}/messages`, { body: text })
          .then(response => response.data)
    },
    getMessageStateRequest: (messageId) => { //to show was the message viewed

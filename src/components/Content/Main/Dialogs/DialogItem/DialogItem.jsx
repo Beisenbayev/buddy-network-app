@@ -1,8 +1,8 @@
 import React from 'react';
 import cn from 'classnames';
+import moment from 'moment';
 import { NavLink } from 'react-router-dom';
 import avatarCreater from '../../../../../utils/avatarCreater.js';
-import dateConverter from '../../../../../utils/dateConverter.js';
 import s from './DialogItem.module.css';
 
 const DialogItem = (props) => {
@@ -16,7 +16,7 @@ const DialogItem = (props) => {
          <div className={s.info}>
             <h3>{props.userName}</h3>
             <span className={s.lastDialogDate}>
-               {dateConverter(props.lastDialogActivityDate)}
+               {moment(props.lastDialogActivityDate).format('ll')}
             </span>
             <span className={s.newMessagesCount}>
                {props.newMessagesCount}

@@ -13,7 +13,8 @@ const Profile = (props) => {
             followed={props.followed}
             followingInProgress={props.followingInProgress}
             follow={props.follow}
-            unfollow={props.unfollow} />
+            unfollow={props.unfollow}
+            startNewChat={props.startNewChat} />
          <ProfileStatus status={props.status} />
          <ProfileContacts contacts={props.profile.contacts} />
       </div>

@@ -1,0 +1,45 @@
+.block {
+   position: relative;
+   min-height: 85vh;
+}
+.chatHeader {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin: 0 -20px;
+   padding: 0 20px 15px 20px;
+   border-bottom: 1px solid #f0f0ed;
+}
+.backButton {
+   a {
+      font-size: 14px;
+      font-weight: 400px;
+      color: #2a5885;
+      cursor: pointer;
+      user-select: none;
+      &:hover {
+         text-decoration: underline;
+      }
+   }
+}
+.info {
+   text-align: center;
+   a {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 18px;
+      color: #333;
+      &:hover {
+         text-decoration: underline;
+      }
+   }
+}
+.avatar {
+   width: 45px;
+   height: 45px;
+   img {
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
+   }
+}

@@ -8,6 +8,7 @@
 }
 .avatar {
    width: 40px;
+   min-width: 40px;
    height: 40px;
    margin-right: 10px;
    img {
@@ -17,6 +18,7 @@
    }
 }
 .info {
+   overflow: hidden;
    h4 {
       font-size: 12px;
       font-weight: bold;

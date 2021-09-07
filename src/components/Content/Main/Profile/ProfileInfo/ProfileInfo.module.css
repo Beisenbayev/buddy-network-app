@@ -23,6 +23,15 @@
   width: 100%;
 }
 
+.messageButton {
+  margin-top: 5px;
+  background: #2f9bc1 !important;
+}
+
+.messageButton:hover {
+  background: #2a8cae !important;
+}
+
 .rightSide {
   position: relative;
   width: 100%;

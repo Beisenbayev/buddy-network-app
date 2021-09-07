@@ -12,19 +12,18 @@ import SettingsContainer from './Settings/SettingsContainer';
 
 const Hello = (props) => {
    return (
-      <div>1) create an global object [listsType or membersType] for membersPage
-         2)replace hooks to component lifecycles in profilePage </div>
+      <div>Hello, world!</div>
    );
 }
 
 const Main = (props) => {
    return (
       <main className={s.block}>
-         <Switch>
+         <Switch> {/*add not found page*/}
             <Route path='/login' render={() => <LoginContainer />} />
-            <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+            <Route path='/profile/:userId?' render={() => <ProfileContainer />} />    {/*change profile navLink*/}
             <Route exact path='/messages' render={() => <DialogsContainer />} />
-            <Route path='/messages/:userId?' render={() => <MessagesContainer />} />
+            <Route path='/messages/:userId' render={() => <MessagesContainer />} />
             <Route path='/members' render={() => <MembersContainer />} />
             <Route path='/settings' render={() => <SettingsContainer />} />
             <Route path='/' render={() => <Hello />} />

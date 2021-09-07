@@ -1,5 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
+import { NavLink } from 'react-router-dom';
 import avatarCreater from '../../../../../utils/avatarCreater.js';
 import s from './ProfileInfo.module.css';
 
@@ -16,11 +17,20 @@ const ProfileInfo = (props) => {
                {!props.isOwner &&
                   (props.followed ?
                      <Button text={'unfollow'}
-                        disabled={props.followingInProgress.some(id => id === props.profile.userId)} 
+                        disabled={props.followingInProgress.some(id => id === props.profile.userId)}
                         onClick={() => props.unfollow(props.profile.userId)} /> :
                      <Button text={'follow'}
-                        disabled={props.followingInProgress.some(id => id === props.profile.userId)} 
-                        onClick={() => props.follow(props.profile.userId)} />)
+                        disabled={props.followingInProgress.some(id => id === props.profile.userId)}
+                        onClick={() => props.follow(props.profile.userId)} />
+                  )
+               }
+               {/*link more quickly than setDialogsThunkCraeter */}
+               {!props.isOwner &&
+                  <NavLink to={`/messages/${props.profile.userId}`} >
+                     <Button text={'message'}
+                        className={s.messageButton}
+                        onClick={() => props.startNewChat(props.profile.userId)} />
+                  </NavLink>
                }
             </div>
          </div>

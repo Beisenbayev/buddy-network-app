@@ -3,6 +3,9 @@ import { messagesAPI } from '../../api/api.js';
 const messagesID = 'buddy/messages';
 const SET_DIALOGS = `${messagesID}/SET_DIALOGS`;
 const SET_MESSAGES = `${messagesID}/SET_MESSAGES`;
+const SET_INTERLOCUTOR = `${messagesID}/SET_INTERLOCUTOR`;
+const SET_CURRENT_PAGE = `${messagesID}/SET_CURRENT_PAGE`;
+const SET_TOTAL_MESSAGES_COUNT = `${messagesID}/SET_TOTAL_MESSAGES_COUNT`;
 const SET_LAST_MESSAGE_STATE = `${messagesID}/SET_LAST_MESSAGE_STATE`;
 const SET_NEW_MESSAGES_COUNT = `${messagesID}/SET_NEW_MESSAGES_COUNT`;
 const TOGGLE_IS_FETCHING = `${messagesID}/TOGGLE_IS_FETCHING`;
@@ -10,6 +13,10 @@ const TOGGLE_IS_FETCHING = `${messagesID}/TOGGLE_IS_FETCHING`;
 const initialState = {
    dialogs: [],
    messages: [],
+   interlocutor: null,
+   currentPage: 1,
+   pageMessagesCount: 20,
+   totalMessagesCount: null,
    lastMessageState: null,
    newMessagesCount: 0,
    isFetching: true,
@@ -22,6 +29,15 @@ const messagesReducer = (state = initialState, action) => {
       }
       case SET_MESSAGES: {
          return { ...state, messages: action.messages };
+      }
+      case SET_INTERLOCUTOR: {
+         return { ...state, interlocutor: action.interlocutor };
+      }
+      case SET_CURRENT_PAGE: {
+         return { ...state, currentPage: action.currentPage };
+      }
+      case SET_TOTAL_MESSAGES_COUNT: {
+         return { ...state, totalMessagesCount: action.totalMessagesCount };
       }
       case SET_LAST_MESSAGE_STATE: {
          return { ...state, lastMessageState: action.lastMessageState };
@@ -38,9 +54,22 @@ const messagesReducer = (state = initialState, action) => {
 
 const setDialogsAC = (dialogs) => ({ type: SET_DIALOGS, dialogs });
 const setMessagesAC = (messages) => ({ type: SET_MESSAGES, messages });
+const setInterlocutorAC = (interlocutor) => ({type: SET_INTERLOCUTOR, interlocutor}); //your chat partner
+const setCurrentPageAC = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
+const setTotalMessagesCountAC = (totalMessagesCount) => ({ type: SET_TOTAL_MESSAGES_COUNT, totalMessagesCount });
 const setLastMessageStateAC = (lastMessageState) => ({ type: SET_LAST_MESSAGE_STATE, lastMessageState });
 const setNewMessagesCountAC = (newMessagesCount) => ({ type: SET_NEW_MESSAGES_COUNT, newMessagesCount });
 const toggleIsFetchingAC = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
+
+export const startNewChatThunkCreater = (userId) => {
+   return async (dispatch, getState) => {
+      const response = await messagesAPI.startСhattingRequest(userId);
+      if (response.resultCode === 0) {
+         dispatch(setDialogsThunkCreater());
+         Promise.resolve("done"); //to catch it in profile-page 
+      }
+   }
+}
 
 export const setDialogsThunkCreater = () => {
    return async (dispatch) => {
@@ -52,11 +81,24 @@ export const setDialogsThunkCreater = () => {
 }
 
 export const setMessagesThunkCreater = (userId, count, page) => {
-   return async (dispatch) => {
+   return async (dispatch, getState) => {
       dispatch(toggleIsFetchingAC(true));
+      await dispatch(setDialogsThunkCreater());
       const response = await messagesAPI.getMessagesRequest(userId, count, page);
-      dispatch(setMessagesAC(response));
+      dispatch(setMessagesAC(response.items));
+      dispatch(setTotalMessagesCountAC(response.totalCount));
+      dispatch(setCurrentPageAC(page));
       dispatch(toggleIsFetchingAC(false));
+   }
+}
+
+export const sendNewMessageThunkCreater = (userId, text) => {
+   return async (dispatch, getState) => {
+      const response = await messagesAPI.sendMessageRequest(userId, text);
+      if (response.resultCode === 0) {
+         const messagesCount = getState().messagesPage.pageMessagesCount;
+         dispatch(setMessagesThunkCreater(userId, messagesCount, 1));
+      }
    }
 }
 

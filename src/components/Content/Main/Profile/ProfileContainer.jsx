@@ -2,6 +2,7 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { Redirect } from 'react-router';
 import withAuthRedirect from '../../../../hoc/withAuthRedirect.js';
 import {
    setProfileThunkCreater
@@ -10,6 +11,9 @@ import {
    followThunkCreater,
    unfollowThunkCreater
 } from '../../../../redux/reducers/members-reducer.js';
+import {
+   startNewChatThunkCreater
+} from '../../../../redux/reducers/messages-reducer.js';
 
 import Preloader from '../../../common/Preloader/Preloader';
 import Profile from './Profile';
@@ -28,6 +32,11 @@ class ProfileContainer extends React.Component {
       if (prevProps.match.params.userId !== this.props.match.params.userId) this.refreshProfile();
    }
 
+   onStartNewChat(userId) {
+      this.props.startNewChat(userId)  
+         .then(() => <Redirect to={`/messages/${this.props.id}`} />)
+   }
+
    render() {
       if (this.props.isFetching) return <Preloader />
 
@@ -40,7 +49,8 @@ class ProfileContainer extends React.Component {
             isOwner={!this.props.match.params.userId}
             isAuth={this.props.isAuth}
             follow={this.props.follow}
-            unfollow={this.props.unfollow} />
+            unfollow={this.props.unfollow}
+            startNewChat={this.onStartNewChat.bind(this)} />
       );
    }
 }
@@ -59,6 +69,7 @@ const mapDispatchToProps = (dispatch) => ({
    setProfile: (id) => dispatch(setProfileThunkCreater(id)),
    follow: (id) => dispatch(followThunkCreater(id)),
    unfollow: (id) => dispatch(unfollowThunkCreater(id)),
+   startNewChat: (id) => dispatch(startNewChatThunkCreater(id)),
 });
 
 

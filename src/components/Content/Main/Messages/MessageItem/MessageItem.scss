@@ -1,0 +1,39 @@
+.block {
+   display: flex;
+   max-width: 100%;
+   margin-top: 10px;
+}
+.block.ownerMessage {
+   justify-content: end;
+   .body {
+      background: #4dabe1;
+      color: #fff;
+      .date {
+         color: #9fd4ff !important;
+      }
+   }
+}
+.body {
+   width: fit-content;
+   max-width: 90%;
+   padding: 5px;
+   border-radius: 8px;
+   background: #f1f1f3;
+   color: #131c21;
+   p {
+      font-size: 16px;
+      letter-spacing: 0.5px;
+   }
+}
+.footer {
+   display: flex;
+   align-items: center;
+   justify-content: end;
+   margin-top: 5px;
+   i {
+      margin-left: 10px;
+   }
+}
+.date {
+   color: #a2a2a4;
+}
