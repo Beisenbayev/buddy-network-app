@@ -3,11 +3,13 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import withAuthRedirect from '../../../../hoc/withAuthRedirect.js';
 import {
-   getIdSelector,
    getProfileSelector,
    getStatusSelector,
    getIsFetchingSelector,
-} from '../../../../redux/selectors/settings-selector.js';
+} from '../../../../redux/selectors/profile-selector.js';
+import {
+   getIdSelector,
+} from '../../../../redux/selectors/auth-selector.js';
 import {
    setProfileThunkCreater,
    updateProfileThunkCreater,

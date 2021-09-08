@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import {
    getNewMessagesCountSelector,
-} from '../../../../redux/selectors/navigation-selector.js';
+} from '../../../../redux/selectors/messages-selector.js';
 
 import Navigation from './Navigation';
 

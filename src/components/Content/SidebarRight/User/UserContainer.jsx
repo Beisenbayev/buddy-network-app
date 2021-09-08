@@ -6,7 +6,7 @@ import {
    getAvatarSelector,
    getLoginSelector,
    getIsAuthSelector,
-} from '../../../../redux/selectors/user-selector.js';
+} from '../../../../redux/selectors/auth-selector.js';
 
 import User from './User';
 

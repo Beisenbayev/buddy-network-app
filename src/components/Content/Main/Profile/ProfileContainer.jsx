@@ -5,14 +5,18 @@ import { withRouter } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import withAuthRedirect from '../../../../hoc/withAuthRedirect.js';
 import {
-   getIdSelector,
    getProfileSelector,
    getStatusSelector,
    getFollowedSelector,
-   getFollowingInProgressSelector,
    getIsFetchingSelector,
-   getIsAuthSelector,
 } from '../../../../redux/selectors/profile-selector.js';
+import {
+   getIdSelector,
+   getIsAuthSelector,
+} from '../../../../redux/selectors/auth-selector.js';
+import {
+   getFollowingInProgressSelector,
+} from '../../../../redux/selectors/members-selector.js';
 import {
    setProfileThunkCreater
 } from '../../../../redux/reducers/profile-reducer.js';

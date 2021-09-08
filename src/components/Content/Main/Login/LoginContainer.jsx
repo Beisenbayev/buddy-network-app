@@ -6,7 +6,7 @@ import {
    getCaptchaUrlSelector,
    getIsSubmitingSelector,
    getIsAuthSelector,
-} from '../../../../redux/selectors/login-selector.js';
+} from '../../../../redux/selectors/auth-selector.js';
 import { loginThunkCreater } from '../../../../redux/reducers/auth-reducer.js';
 
 import Login from './Login';

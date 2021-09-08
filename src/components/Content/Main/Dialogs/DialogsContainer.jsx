@@ -5,7 +5,7 @@ import withAuthRedirect from '../../../../hoc/withAuthRedirect.js';
 import {
    getDialogsSelector,
    getIsFetchingSelector,
-} from '../../../../redux/selectors/dialogs-selector.js';
+} from '../../../../redux/selectors/messages-selector.js';
 import {
    setDialogsThunkCreater
 } from '../../../../redux/reducers/messages-reducer.js';

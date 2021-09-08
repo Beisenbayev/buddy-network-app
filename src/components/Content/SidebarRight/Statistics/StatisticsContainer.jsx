@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import {
    getTotalMembersCountSelector,
    getTotalFriendsCountSelector,
+} from '../../../../redux/selectors/members-selector.js';
+import {
    getIsAuthSelector,
-} from '../../../../redux/selectors/statistics-selector.js';
+} from '../../../../redux/selectors/auth-selector.js';
 
 import Statistics from './Statistics';
 

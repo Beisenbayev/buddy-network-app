@@ -1,7 +1,7 @@
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { getIsAuthSelector } from '../../redux/selectors/header-selector.js';
+import { getIsAuthSelector } from '../../redux/selectors/auth-selector.js';
 import { logoutThunkCreater } from '../../redux/reducers/auth-reducer.js';
 
 import Header from './Header';

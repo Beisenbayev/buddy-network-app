@@ -12,8 +12,10 @@ import {
    getSearchTermSelector,
    getFollowingInProgressSelector,
    getIsFetchingSelector,
-   getIsAuthSelector,
 } from '../../../../redux/selectors/members-selector.js';
+import {
+   getIsAuthSelector,
+} from '../../../../redux/selectors/auth-selector.js'
 import {
    setMembersThunkCreater,
    followThunkCreater,

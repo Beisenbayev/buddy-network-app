@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import withAuthRedirect from '../../../../hoc/withAuthRedirect.js';
 import {
-   getOwnerIdSelector,
    getDialogsSelector,
    getMessagesSelector,
    getCurrentPageSelector,
@@ -13,6 +12,9 @@ import {
    getLastMessageStateSelector,
    getIsFetchingSelector
 } from '../../../../redux/selectors/messages-selector.js';
+import {
+   getIdSelector,
+} from '../../../../redux/selectors/auth-selector.js';
 import {
    setMessagesThunkCreater,
    sendNewMessageThunkCreater
@@ -24,7 +26,7 @@ import Messages from './Messages';
 class MessagesContainer extends React.Component {
    userId = this.props.match.params.userId; //add it to local state
    interlocutor = this.props.dialogs.filter(dialog => dialog.id == this.userId)[0];
-   
+
    componentDidMount() {
       this.props.setMessages(this.userId, this.props.pageMessagesCount, 1);
    }
@@ -39,7 +41,7 @@ class MessagesContainer extends React.Component {
 
    render() {
       if (this.props.isFetching) return <Preloader />
-      
+
       return (
          <Messages ownerId={this.props.ownerId}
             interlocutor={this.interlocutor}
@@ -53,7 +55,7 @@ class MessagesContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-   ownerId: getOwnerIdSelector(state),
+   ownerId: getIdSelector(state),
    dialogs: getDialogsSelector(state),
    messages: getMessagesSelector(state),
    currentPage: getCurrentPageSelector(state),

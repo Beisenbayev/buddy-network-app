@@ -2,6 +2,14 @@ export const getMembersSelector = (state) => {
    return state.membersPage.members;
 }
 
+export const getFriendsSelector = (state) => {
+   return state.membersPage.friends;
+}
+
+export const getNewcomersSelector = (state) => {
+   return state.membersPage.newcomers;
+}
+
 export const getCurrentPageSelector = (state) => {
    return state.membersPage.currentPage;
 }
@@ -36,8 +44,4 @@ export const getFollowingInProgressSelector = (state) => {
 
 export const getIsFetchingSelector = (state) => {
    return state.membersPage.isFetching;
-}
-
-export const getIsAuthSelector = (state) => {
-   return state.authorization.isAuth;
 }

@@ -1,7 +1,3 @@
-export const getOwnerIdSelector = (state) => {
-   return state.authorization.id;
-}
-
 export const getDialogsSelector = (state) => {
    return state.messagesPage.dialogs;
 }
@@ -24,6 +20,10 @@ export const getTotalMessagesCountSelector = (state) => {
 
 export const getLastMessageStateSelector = (state) => {
    return state.messagesPage.lastMessageState;
+}
+
+export const getNewMessagesCountSelector = (state) => {
+   return state.messagesPage.newMessagesCount;
 }
 
 export const getIsFetchingSelector = (state) => {

@@ -2,9 +2,11 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { 
-   getFriendsSelector,
+   getFriendsSelector, 
+} from '../../../../redux/selectors/members-selector.js';
+import {
    getIsAuthSelector
- } from '../../../../redux/selectors/friends-selector.js';
+} from '../../../../redux/selectors/auth-selector.js';
 
 import Friends from './Friends';
 

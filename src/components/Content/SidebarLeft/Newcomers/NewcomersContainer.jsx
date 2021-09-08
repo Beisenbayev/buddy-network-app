@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import {
    getNewcomersSelector,
-} from '../../../../redux/selectors/newcomers-selector.js';
+} from '../../../../redux/selectors/members-selector.js';
 
 import Newcomers from './Newcomers';
 
