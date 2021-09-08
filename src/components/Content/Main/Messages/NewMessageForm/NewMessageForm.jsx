@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 import s from './NewMessageForm.module.css';
 
-import { MyInput, MyTextarea } from '../../../../common/FormComponents/FormComponents';
+import { MyTextarea } from '../../../../common/FormComponents/FormComponents';
 import Button from '../../../../common/Button/Button';
 
 const NewMessageForm = (props) => {

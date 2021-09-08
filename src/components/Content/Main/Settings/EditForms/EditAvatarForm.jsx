@@ -1,8 +1,8 @@
 import React from 'react';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import avatarCreater from '../../../../../utils/avatarCreater';
 import s from './EditAvatarForm.module.css';
+import noneAvatar from '../../../../../assets/noneAvatar.jpg';
 
 import Button from '../../../../common/Button/Button';
 
@@ -22,7 +22,7 @@ const EditAvatarForm = (props) => {
          {formik =>
             <Form className={s.block}>
                <div className={s.currentAvatar}>
-                  <img src={props.profile.photos.small} alt="" />
+                  <img src={props.profile.photos.small || noneAvatar} alt="" />
                </div>
                <div className={s.uploadArea}>
                   <div className={s.fileInput}>

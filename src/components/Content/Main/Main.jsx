@@ -8,6 +8,7 @@ import DialogsContainer from './Dialogs/DialogsContainer';
 import MessagesContainer from './Messages/MessagesContainer';
 import MembersContainer from './Members/MembersContainer';
 import SettingsContainer from './Settings/SettingsContainer';
+import HomeContainer from './Home/HomeContainer';
 import NotFound from './NotFound/NotFound';
 
 const Main = (props) => {

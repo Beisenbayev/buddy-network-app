@@ -4,7 +4,6 @@ import s from './MembersSearchForm.module.css';
 
 import { MyInput } from '../../../../common/FormComponents/FormComponents';
 import Button from '../../../../common/Button/Button';
-import { values } from 'lodash';
 
 const MembersSearchForm = (props) => {
    return (

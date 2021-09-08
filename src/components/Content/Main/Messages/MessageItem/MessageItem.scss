@@ -4,7 +4,7 @@
    margin-top: 10px;
 }
 .block.ownerMessage {
-   justify-content: end;
+   justify-content: flex-end;
    .body {
       background: #4dabe1;
       color: #fff;
@@ -28,7 +28,7 @@
 .footer {
    display: flex;
    align-items: center;
-   justify-content: end;
+   justify-content: flex-end;
    margin-top: 5px;
    i {
       margin-left: 10px;

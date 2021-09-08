@@ -24,7 +24,7 @@ const LoginForm = (props) => {
             password: Yup.string()
                .required('Required field!')
                .max(25, 'Must be 25 characters or less!')
-               .min(6, 'Must be 6 characters or more!'),
+               .min(3, 'Must be 3 characters or more!'),
          })}
          onSubmit={(values) => props.sendLoginData(values)}>
          {/*use {setSubmitting, setFieldError, setStatus} to show API errors */}

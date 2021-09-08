@@ -1,0 +1,46 @@
+.block {
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #2b2b2b;
+}
+
+.block h1 {
+  font-size: 24px;
+  text-align: center;
+}
+
+.mainText {
+  margin-bottom: 15px;
+}
+
+.loginPanel {
+  margin: 0 0 15px 25px;
+  font-size: 16px;
+}
+
+.loginPanel i {
+  font-weight: bold;
+}
+
+.networks {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.networks li {
+  padding: 7px 7px 0 7px;
+  border-radius: 4px;
+}
+
+.networks li:hover {
+  cursor: pointer;
+  background: #ccc;
+}
+
+.networks li a {
+  font-size: 25px;
+  color: #333;
+}
