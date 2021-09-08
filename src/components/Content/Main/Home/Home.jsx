@@ -12,7 +12,7 @@ const Home = (props) => {
             login: <i>kana.mana01@mail.ru</i><br />
             password: <i>tester123</i>
          </p>
-         <p className={s.mainText}>I would like to thank the team <b>IT-KAMASUTRA</b> and senpai <b>Dymich</b> for their best study project.</p>
+         <p className={s.mainText}>I would like to thank the team <b>IT-KAMASUTRA</b> and senpai <b>Dymich</b> for their best study course.</p>
          <h3>They are in social networks: </h3>
          <ul className={s.networks}>
             <li>

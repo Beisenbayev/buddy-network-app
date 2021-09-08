@@ -1,6 +1,9 @@
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import {
+   getNewcomersSelector,
+} from '../../../../redux/selectors/newcomers-selector.js';
 
 import Newcomers from './Newcomers';
 
@@ -13,7 +16,7 @@ class NewcomersContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-   newcomers: state.membersPage.newcomers,
+   newcomers: getNewcomersSelector(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

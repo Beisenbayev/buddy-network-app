@@ -1,6 +1,7 @@
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { getInitializedSelector } from './redux/selectors/app-selector.js';
 import { initializeThunkCreate } from './redux/reducers/app-reducer';
 import s from './App.module.css';
 
@@ -26,7 +27,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	initialized: state.application.initialized,
+	initialized: getInitializedSelector(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

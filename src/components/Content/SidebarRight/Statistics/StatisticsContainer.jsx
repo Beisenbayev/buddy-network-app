@@ -1,6 +1,11 @@
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import {
+   getTotalMembersCountSelector,
+   getTotalFriendsCountSelector,
+   getIsAuthSelector,
+} from '../../../../redux/selectors/statistics-selector.js';
 
 import Statistics from './Statistics';
 
@@ -13,9 +18,9 @@ class StatisticsContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-   totalMembersCount: state.membersPage.totalMembersCount,
-   totalFriendsCount: state.membersPage.totalFriendsCount,
-   isAuth: state.authorization.isAuth
+   totalMembersCount: getTotalMembersCountSelector(state),
+   totalFriendsCount: getTotalFriendsCountSelector(state),
+   isAuth: getIsAuthSelector(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

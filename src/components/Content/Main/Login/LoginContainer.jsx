@@ -2,6 +2,11 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
+import {
+   getCaptchaUrlSelector,
+   getIsSubmitingSelector,
+   getIsAuthSelector,
+} from '../../../../redux/selectors/login-selector.js';
 import { loginThunkCreater } from '../../../../redux/reducers/auth-reducer.js';
 
 import Login from './Login';
@@ -24,9 +29,9 @@ class LoginContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-   captchaUrl: state.authorization.captchaUrl,
-   isSubmiting: state.authorization.isSubmiting,
-   isAuth: state.authorization.isAuth,
+   captchaUrl: getCaptchaUrlSelector(state),
+   isSubmiting: getIsSubmitingSelector(state),
+   isAuth: getIsAuthSelector(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

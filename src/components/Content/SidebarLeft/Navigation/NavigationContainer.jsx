@@ -1,6 +1,9 @@
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import {
+   getNewMessagesCountSelector,
+} from '../../../../redux/selectors/navigation-selector.js';
 
 import Navigation from './Navigation';
 
@@ -13,7 +16,7 @@ class NavigationContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-   newMessagesCount: state.messagesPage.newMessagesCount,
+   newMessagesCount: getNewMessagesCountSelector(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

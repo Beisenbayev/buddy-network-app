@@ -1,6 +1,10 @@
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { 
+   getFriendsSelector,
+   getIsAuthSelector
+ } from '../../../../redux/selectors/friends-selector.js';
 
 import Friends from './Friends';
 
@@ -13,8 +17,8 @@ class FriendsContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-   friends: state.membersPage.friends,
-   isAuth: state.authorization.isAuth,
+   friends: getFriendsSelector(state),
+   isAuth: getIsAuthSelector(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

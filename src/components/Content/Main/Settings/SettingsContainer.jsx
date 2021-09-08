@@ -3,6 +3,12 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import withAuthRedirect from '../../../../hoc/withAuthRedirect.js';
 import {
+   getIdSelector,
+   getProfileSelector,
+   getStatusSelector,
+   getIsFetchingSelector,
+} from '../../../../redux/selectors/settings-selector.js';
+import {
    setProfileThunkCreater,
    updateProfileThunkCreater,
    updateStatusThunkCreater,
@@ -31,10 +37,10 @@ class SettingsContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-   id: state.authorization.id,
-   profile: state.profilePage.profile,
-   status: state.profilePage.status,
-   isFetching: state.profilePage.isFetching,
+   id: getIdSelector(state),
+   profile: getProfileSelector(state),
+   status: getStatusSelector(state),
+   isFetching: getIsFetchingSelector(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

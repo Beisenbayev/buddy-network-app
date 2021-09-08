@@ -10,7 +10,7 @@ const EditStatusForm = (props) => {
    return (
       <Formik
          initialValues={{
-            status: props.status
+            status: props.status || ''
          }}
          validationSchema={Yup.object({
             status: Yup.string()

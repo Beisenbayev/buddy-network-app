@@ -3,6 +3,10 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import withAuthRedirect from '../../../../hoc/withAuthRedirect.js';
 import {
+   getDialogsSelector,
+   getIsFetchingSelector,
+} from '../../../../redux/selectors/dialogs-selector.js';
+import {
    setDialogsThunkCreater
 } from '../../../../redux/reducers/messages-reducer.js';
 
@@ -24,8 +28,8 @@ class DialogsContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-   dialogs: state.messagesPage.dialogs,
-   isFetching: state.messagesPage.isFetching,
+   dialogs: getDialogsSelector(state),
+   isFetching: getIsFetchingSelector(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,6 +1,12 @@
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import {
+   getIdSelector,
+   getAvatarSelector,
+   getLoginSelector,
+   getIsAuthSelector,
+} from '../../../../redux/selectors/user-selector.js';
 
 import User from './User';
 
@@ -13,10 +19,10 @@ class UserContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-   id: state.authorization.id,
-   login: state.authorization.login,
-   avatar: state.authorization.avatar,
-   isAuth: state.authorization.isAuth,
+   id: getIdSelector(state),
+   login: getLoginSelector(state),
+   avatar: getAvatarSelector(state),
+   isAuth: getIsAuthSelector(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

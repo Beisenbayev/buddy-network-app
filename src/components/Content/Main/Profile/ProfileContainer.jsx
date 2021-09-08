@@ -5,6 +5,15 @@ import { withRouter } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import withAuthRedirect from '../../../../hoc/withAuthRedirect.js';
 import {
+   getIdSelector,
+   getProfileSelector,
+   getStatusSelector,
+   getFollowedSelector,
+   getFollowingInProgressSelector,
+   getIsFetchingSelector,
+   getIsAuthSelector,
+} from '../../../../redux/selectors/profile-selector.js';
+import {
    setProfileThunkCreater
 } from '../../../../redux/reducers/profile-reducer.js';
 import {
@@ -56,13 +65,13 @@ class ProfileContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-   id: state.authorization.id,
-   profile: state.profilePage.profile,
-   status: state.profilePage.status,
-   followed: state.profilePage.followed,
-   followingInProgress: state.membersPage.followingInProgress,
-   isFetching: state.profilePage.isFetching,
-   isAuth: state.authorization.isAuth,
+   id: getIdSelector(state),
+   profile: getProfileSelector(state),
+   status: getStatusSelector(state),
+   followed: getFollowedSelector(state),
+   followingInProgress: getFollowingInProgressSelector(state),
+   isFetching: getIsFetchingSelector(state),
+   isAuth: getIsAuthSelector(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,6 +1,7 @@
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { getIsAuthSelector } from '../../redux/selectors/header-selector.js';
 import { logoutThunkCreater } from '../../redux/reducers/auth-reducer.js';
 
 import Header from './Header';
@@ -14,7 +15,7 @@ class HeaderContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-   isAuth: state.authorization.isAuth
+   isAuth: getIsAuthSelector(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

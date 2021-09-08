@@ -2,6 +2,19 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import {
+   getMembersSelector,
+   getCurrentPageSelector,
+   getPageItemsCountSelector,
+   getTotalItemsCountSelector,
+   getTotalMembersCountSelector,
+   getTotalFriendsCountSelector,
+   getMembersTypeSelector,
+   getSearchTermSelector,
+   getFollowingInProgressSelector,
+   getIsFetchingSelector,
+   getIsAuthSelector,
+} from '../../../../redux/selectors/members-selector.js';
+import {
    setMembersThunkCreater,
    followThunkCreater,
    unfollowThunkCreater
@@ -51,17 +64,17 @@ class MembersContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-   members: state.membersPage.members,
-   currentPage: state.membersPage.currentPage,
-   pageItemsCount: state.membersPage.pageItemsCount,
-   totalItemsCount: state.membersPage.totalItemsCount,
-   totalMembersCount: state.membersPage.totalMembersCount,
-   totalFriendsCount: state.membersPage.totalFriendsCount,
-   membersType: state.membersPage.membersType,
-   searchTerm: state.membersPage.searchTerm,
-   followingInProgress: state.membersPage.followingInProgress,
-   isFetching: state.membersPage.isFetching,
-   isAuth: state.authorization.isAuth,
+   members: getMembersSelector(state),
+   currentPage: getCurrentPageSelector(state),
+   pageItemsCount: getPageItemsCountSelector(state),
+   totalItemsCount: getTotalItemsCountSelector(state),
+   totalMembersCount: getTotalMembersCountSelector(state),
+   totalFriendsCount: getTotalFriendsCountSelector(state),
+   membersType: getMembersTypeSelector(state),
+   searchTerm: getSearchTermSelector(state),
+   followingInProgress: getFollowingInProgressSelector(state),
+   isFetching: getIsFetchingSelector(state),
+   isAuth: getIsAuthSelector(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -4,6 +4,16 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import withAuthRedirect from '../../../../hoc/withAuthRedirect.js';
 import {
+   getOwnerIdSelector,
+   getDialogsSelector,
+   getMessagesSelector,
+   getCurrentPageSelector,
+   getPageMessagesCountSelector,
+   getTotalMessagesCountSelector,
+   getLastMessageStateSelector,
+   getIsFetchingSelector
+} from '../../../../redux/selectors/messages-selector.js';
+import {
    setMessagesThunkCreater,
    sendNewMessageThunkCreater
 } from '../../../../redux/reducers/messages-reducer.js';
@@ -43,14 +53,14 @@ class MessagesContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-   ownerId: state.authorization.id,
-   dialogs: state.messagesPage.dialogs,
-   messages: state.messagesPage.messages,
-   currentPage: state.messagesPage.currentPage,
-   pageMessagesCount: state.messagesPage.pageMessagesCount,
-   totalMessagesCount: state.messagesPage.totalMessagesCount,
-   lastMessageState: state.messagesPage.lastMessageState,
-   isFetching: state.messagesPage.isFetching
+   ownerId: getOwnerIdSelector(state),
+   dialogs: getDialogsSelector(state),
+   messages: getMessagesSelector(state),
+   currentPage: getCurrentPageSelector(state),
+   pageMessagesCount: getPageMessagesCountSelector(state),
+   totalMessagesCount: getTotalMessagesCountSelector(state),
+   lastMessageState: getLastMessageStateSelector(state),
+   isFetching: getIsFetchingSelector(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
