@@ -1,6 +1,9 @@
 import React from 'react';
+import { 
+   FaGlobe, FaLink, FaYoutube, 
+   FaInstagram, FaTelegram 
+} from 'react-icons/fa';
 import cn from 'classnames';
-import { FaGlobe, FaLink, FaYoutube, FaInstagram, FaTelegram } from 'react-icons/fa';
 import s from './Home.module.css';
 
 const Home = (props) => {

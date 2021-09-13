@@ -1,21 +1,34 @@
 import React from 'react';
-import cn from 'classnames';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import {
+   getIdSelector,
+   getLoginSelector,
+   getAvatarSelector,
+   getIsAuthSelector,
+} from '../../../../redux/selectors/auth-selector.js';
 import createAvatar from '../../../../utils/avatarCreater.js';
+import cn from 'classnames';
 import s from './User.module.css';
 
 const User = (props) => {
+   const dispatch = useDispatch();
+   const id = useSelector(state => getIdSelector(state));
+   const login = useSelector(state => getLoginSelector(state));
+   const avatar = useSelector(state => getAvatarSelector(state));
+   const isAuth = useSelector(state => getIsAuthSelector(state));
+
    return (
       <div className={cn(s.block, 'widget')}>
          <h3 className={cn(s.title, 'widget__title')}>Identity</h3>
-         {props.isAuth ?
+         {isAuth ?
             <div className={s.about}>
                <div className={s.avatar}>
-                  <img src={props.avatar || createAvatar()} alt="" />
+                  <img src={avatar || createAvatar()} alt="" />
                </div>
                <div className={s.info}>
-                  <h3>{props.login}</h3>
-                  <span>ID: {props.id}</span>
+                  <h3>{login}</h3>
+                  <span>ID: {id}</span>
                   <NavLink to='/settings'>edit profile</NavLink>
                </div>
             </div> :

@@ -2,26 +2,26 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import s from './Main.module.css';
 
-import LoginContainer from './Login/LoginContainer';
-import ProfileContainer from './Profile/ProfileContainer';
-import DialogsContainer from './Dialogs/DialogsContainer';
-import MessagesContainer from './Messages/MessagesContainer';
-import MembersContainer from './Members/MembersContainer';
-import SettingsContainer from './Settings/SettingsContainer';
-import HomeContainer from './Home/HomeContainer';
+import Login from './Login/Login';
+import Profile from './Profile/Profile';
+import Dialogs from './Dialogs/Dialogs';
+import Messages from './Messages/Messages';
+import Members from './Members/Members';
+import Settings from './Settings/Settings';
+import Home from './Home/Home';
 import NotFound from './NotFound/NotFound';
 
 const Main = (props) => {
    return (
       <main className={s.block}>
          <Switch>
-            <Route path='/login' render={() => <LoginContainer />} />
-            <Route path='/profile/:userId?' render={() => <ProfileContainer />} />    {/*change profile navLink*/}
-            <Route exact path='/messages' render={() => <DialogsContainer />} />
-            <Route path='/messages/:userId' render={() => <MessagesContainer />} />
-            <Route path='/members' render={() => <MembersContainer />} />
-            <Route path='/settings' render={() => <SettingsContainer />} />
-            <Route exact path='/' render={() => <HomeContainer />} />
+            <Route path='/login' render={() => <Login />} />
+            <Route path='/profile/:userId?' render={() => <Profile />} />  
+            <Route exact path='/messages' render={() => <Dialogs />} />
+            <Route path='/messages/:userId' render={() => <Messages />} />
+            <Route path='/members' render={() => <Members />} />
+            <Route path='/settings' render={() => <Settings />} />
+            <Route exact path='/' render={() => <Home />} />
             <Route render={() => <NotFound />} />
          </Switch>
       </main>

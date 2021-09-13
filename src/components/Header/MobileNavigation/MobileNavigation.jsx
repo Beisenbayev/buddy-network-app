@@ -7,23 +7,23 @@ const MobileNavigation = (props) => {
    return (
       <ul className={s.block}>
          <li className={s.link}>
-            <NavLink to="/profile" activeClassName={s.activeLink}>profile</NavLink>
+            <NavLink to={`/profile/${props.id}`} activeClassName={s.activeLink}>profile</NavLink>
          </li>
          <li className={s.link}>
-            <NavLink to="/members" activeClassName={s.activeLink}>members</NavLink>
+            <NavLink to='/members' activeClassName={s.activeLink}>members</NavLink>
          </li>
          <li className={s.link}>
-            <NavLink to="/messages" activeClassName={s.activeLink}>messages</NavLink>
+            <NavLink to='/messages' activeClassName={s.activeLink}>messages</NavLink>
          </li>
          <li className={s.link}>
-            <NavLink to="/settings" activeClassName={s.activeLink}>settings</NavLink>
+            <NavLink to='/settings' activeClassName={s.activeLink}>settings</NavLink>
          </li>
          {props.isAuth ?
             <li className={cn(s.link, s.logout)}>
                <NavLink to='/' onClick={() => props.logout()}>logout</NavLink>
             </li> :
             <li className={cn(s.link, s.login)}>
-               <NavLink to="/login">login</NavLink>
+               <NavLink to='/login'>login</NavLink>
             </li>
          }
       </ul>
