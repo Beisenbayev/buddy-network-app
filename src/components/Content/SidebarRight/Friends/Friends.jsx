@@ -1,12 +1,23 @@
 import React from 'react';
-import cn from 'classnames';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { 
+   getFriendsSelector, 
+} from '../../../../redux/selectors/members-selector.js';
+import {
+   getIsAuthSelector
+} from '../../../../redux/selectors/auth-selector.js';
+import cn from 'classnames';
 import s from './Friends.module.css';
 
 import WidgetMemberItem from '../../../common/WidgetMemberItem/WidgetMemberItem';
 
 const Friends = (props) => {
-   const friendItems = props.friends.map(friend => {
+   const dispatch = useDispatch();
+   const friends = useSelector(state => getFriendsSelector(state));
+   const isAuth = useSelector(state => getIsAuthSelector(state));
+
+   const friendItems = friends.map(friend => {
       return <WidgetMemberItem key={friend.id}
          id={friend.id}
          name={friend.name}
@@ -17,7 +28,7 @@ const Friends = (props) => {
    return (
       <div className={cn(s.block, 'widget')}>
          <h3 className={cn(s.title, 'widget__title')}>Friends</h3>
-         {props.isAuth ?
+         {isAuth ?
             <ul className={s.list}>
                {friendItems.length > 0 ? friendItems :
                   <p className={s.followAdvice}>You have not followed anyone yet.

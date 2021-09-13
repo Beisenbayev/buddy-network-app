@@ -1,6 +1,7 @@
 .block {
    display: flex;
    max-width: 100%;
+   min-width: 30%;
    margin-top: 10px;
 }
 .block.ownerMessage {

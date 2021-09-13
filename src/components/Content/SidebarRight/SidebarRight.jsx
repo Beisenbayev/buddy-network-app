@@ -1,16 +1,16 @@
 import React from 'react';
 import s from './SidebarRight.module.css';
 
-import UserContainer from './User/UserContainer';
-import FriendsContainer from './Friends/FriendsContainer';
-import StatisticsContainer from './Statistics/StatisticsContainer';
+import User from './User/User';
+import Friends from './Friends/Friends';
+import Statistics from './Statistics/Statistics';
 
 const SidebarRight = (props) => {
    return (
       <div className={s.block}>
-         <UserContainer />
-         <FriendsContainer />
-         <StatisticsContainer />
+         <User />
+         <Friends />
+         <Statistics />
       </div>
    );
 }

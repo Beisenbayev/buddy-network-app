@@ -1,12 +1,31 @@
-import React from 'react';
-import cn from 'classnames';
+import React, { useEffect } from 'react';
+import { compose } from 'redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import withAuthRedirect from '../../../../hoc/withAuthRedirect.js';
+import {
+   getDialogsSelector,
+   getIsFetchingSelector,
+} from '../../../../redux/selectors/messages-selector.js';
+import {
+   setDialogsThunkCreater as setDialogs
+} from '../../../../redux/reducers/messages-reducer.js';
+import cn from 'classnames';
 import s from './Dialogs.module.css';
 
+import Preloader from '../../../common/Preloader/Preloader';
 import DialogItem from './DialogItem/DialogItem';
 
 const Dialogs = (props) => {
-   const dialogItems = props.dialogs.map(dialog => {
+   const dispatch = useDispatch();
+   const dialogs = useSelector(state => getDialogsSelector(state));
+   const isFetching = useSelector(state => getIsFetchingSelector(state));
+
+   useEffect(() => {
+      dispatch(setDialogs());
+   }, [])
+
+   const dialogItems = dialogs.map(dialog => {
       return <DialogItem key={dialog.id} id={dialog.id}
          userName={dialog.userName}
          avatar={dialog.photos.small}
@@ -16,6 +35,8 @@ const Dialogs = (props) => {
          newMessagesCount={dialog.newMessagesCount}
       />
    })
+
+   if (isFetching) return <Preloader />
 
    return (
       <div className={cn(s.block, 'main-page')}>
@@ -33,4 +54,6 @@ const Dialogs = (props) => {
 }
 
 
-export default Dialogs;
+export default compose(
+   withAuthRedirect
+)(Dialogs);
