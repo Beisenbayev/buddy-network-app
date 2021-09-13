@@ -1,11 +1,18 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+   getNewcomersSelector,
+} from '../../../../redux/selectors/members-selector.js';
 import cn from 'classnames';
 import s from './Newcomers.module.css';
 
 import WidgetMemberItem from '../../../common/WidgetMemberItem/WidgetMemberItem';
 
 const Newcomers = (props) => {
-   const newcomerItems = props.newcomers.map(newcomer => {
+   const dispatch = useDispatch();
+   const newcomers = useSelector(state => getNewcomersSelector(state));
+
+   const newcomerItems = newcomers.map(newcomer => {
       return <WidgetMemberItem key={newcomer.id}
          id={newcomer.id}
          name={newcomer.name}

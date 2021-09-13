@@ -1,14 +1,14 @@
 import React from 'react';
 import s from './SidebarLeft.module.css';
 
-import NavigationContainer from './Navigation/NavigationContainer';
-import NewcomersContainer from './Newcomers/NewcomersContainer';
+import Navigation from './Navigation/Navigation';
+import Newcomers from './Newcomers/Newcomers';
 
 const SidebarLeft = (props) => {
    return (
       <div className={s.block}>
-         <NavigationContainer />
-         <NewcomersContainer />
+         <Navigation />
+         <Newcomers />
       </div>
    );
 }

@@ -1,26 +1,36 @@
 import React from 'react';
-import cn from 'classnames';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import {
-   FaUserAlt, FaCommentAlt,
-   FaUsers, FaCog
+   FaUserAlt, FaCommentAlt, FaUsers, FaCog
 } from 'react-icons/fa';
+import {
+   getNewMessagesCountSelector,
+} from '../../../../redux/selectors/messages-selector.js';
+import {
+   getIdSelector
+} from '../../../../redux/selectors/auth-selector.js';
+import cn from 'classnames';
 import s from './Navigation.module.css';
 
 const Navigation = (props) => {
+   //const dispatch = useDispatch();
+   const id = useSelector(state => getIdSelector(state));
+   const newMessagesCount = useSelector(state => getNewMessagesCountSelector(state));
+
    return (
       <div className={cn(s.block, 'widget')}>
          <h3 className={cn(s.title, 'widget__title')}>navigation</h3>
          <ul className={s.list}>
             <li className={s.link}>
-               <NavLink to='/profile'
+               <NavLink to={`/profile/${id}`}
                   activeClassName={s.activeLink}><FaUserAlt /> <span>profile</span>
                </NavLink>
             </li>
             <li className={s.link}>
                <NavLink to='/messages'
                   activeClassName={s.activeLink}><FaCommentAlt /> <span>messages</span>
-                  <b className={s.notificationCount}>{props.newMessagesCount}</b>
+                  <b className={s.notificationCount}>{newMessagesCount}</b>
                </NavLink>
             </li>
             <li className={s.link}>
