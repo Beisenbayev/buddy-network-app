@@ -10,11 +10,12 @@ import {
 import {
    getIdSelector,
 } from '../../../../redux/selectors/auth-selector.js';
+
 import {
-   setProfileThunkCreater as setProfile,
-   updateProfileThunkCreater as updateProfile,
-   updateStatusThunkCreater as updateStatus,
-   updateAvatarThunkCreater as updateAvatar,
+   getProfileAC as getProfile,
+   updateProfileAC as updateProfile,
+   updateStatusAC as updateStatus,
+   updateAvatarAC as updateAvatar,
 } from '../../../../redux/reducers/profile-reducer.js';
 import cn from 'classnames';
 import s from './Settings.module.css';
@@ -33,7 +34,7 @@ const Settings = (props) => {
    const isFetching = useSelector(state => getIsFetchingSelector(state));
 
    useEffect(() => {
-      dispatch(setProfile(id));
+      dispatch(getProfile(id));
    }, []);
 
    const handleUpdateAvatar = (avatar) => {

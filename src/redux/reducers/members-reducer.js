@@ -1,6 +1,6 @@
-import { call, put, select } from 'redux-saga/effects';
+import { call, put } from 'redux-saga/effects';
 import { membersAPI, followAPI } from '../../api/api.js';
-import { setFollowedThunkCreater } from './profile-reducer';
+import { getFollowedAC } from './profile-reducer';
 
 const membersID = 'buddy/members';
 export const GET_MEMBERS = `${membersID}/GET_MEMBERS`;
@@ -137,7 +137,7 @@ export function* handleFollow({userId}) {
    if (response.resultCode === 0) {
       yield put(toggleFollowingAC(userId, true));
       yield put(getFriendsAC(5, 1));
-      dispatch(setFollowedThunkCreater(userId)); //change it
+      yield put(getFollowedAC(userId)); //change it
    }
    yield put(toggleFollowingProgressAC(false, id));
 }
@@ -148,7 +148,7 @@ export function* handleUnfollow({userId}) {
    if (response.resultCode === 0) {
       yield put(toggleFollowingAC(userId, false));
       yield put(getFriendsAC(5, 1));
-      dispatch(setFollowedThunkCreater(userId)); //change it
+      yield put(getFollowedAC(userId)); //change it
    }
    yield put(toggleFollowingProgressAC(false, id));
 }

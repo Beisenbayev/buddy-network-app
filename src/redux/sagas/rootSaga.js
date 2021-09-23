@@ -1,6 +1,15 @@
 import { takeEvery } from 'redux-saga/effects';
 
 import {
+   GET_PROFILE, handleGetProfile,
+   GET_STATUS, handleGetStatus,
+   GET_FOLLOWED, handleGetFollowed,
+   UPDATE_PROFILE, handleUpdateProfile,
+   UPDATE_STATUS, handleUpdateStatus,
+   UPDATE_AVATAR, handleUpdateAvatar,
+} from '../reducers/profile-reducer.js';
+
+import {
    START_NEW_CHAT, handleStartNewChat,
    GET_DIALOGS, handleGetDialogs,
    GET_MESSAGES, handleGetMessages,
@@ -18,6 +27,13 @@ import {
 } from '../reducers/members-reducer';
 
 function* watcherSaga() {
+   yield takeEvery(GET_PROFILE, handleGetProfile);
+   yield takeEvery(GET_STATUS, handleGetStatus);
+   yield takeEvery(GET_FOLLOWED, handleGetFollowed);
+   yield takeEvery(UPDATE_PROFILE, handleUpdateProfile);
+   yield takeEvery(UPDATE_STATUS, handleUpdateStatus);
+   yield takeEvery(UPDATE_AVATAR, handleUpdateAvatar);
+
    yield takeEvery(START_NEW_CHAT, handleStartNewChat);
    yield takeEvery(GET_DIALOGS, handleGetDialogs);
    yield takeEvery(GET_MESSAGES, handleGetMessages);
