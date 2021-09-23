@@ -8,7 +8,7 @@ import {
    getIsFetchingSelector,
 } from '../../../../redux/selectors/messages-selector.js';
 import {
-   setDialogsThunkCreater as setDialogs
+   getDialogsAC as getDialogs
 } from '../../../../redux/reducers/messages-reducer.js';
 import cn from 'classnames';
 import s from './Dialogs.module.css';
@@ -22,7 +22,7 @@ const Dialogs = (props) => {
    const isFetching = useSelector(state => getIsFetchingSelector(state));
 
    useEffect(() => {
-      dispatch(setDialogs());
+      dispatch(getDialogs());
    }, [])
 
    const dialogItems = dialogs.map(dialog => {

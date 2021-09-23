@@ -14,8 +14,8 @@ import {
    getIdSelector,
 } from '../../../../redux/selectors/auth-selector.js';
 import {
-   setMessagesThunkCreater as setMessages,
-   sendNewMessageThunkCreater as sendNewMessage
+   getMessagesAC as getMessages,
+   sendNewMessageAC as sendNewMessage
 } from '../../../../redux/reducers/messages-reducer.js';
 import avatarCreater from '../../../../utils/avatarCreater.js';
 import cn from 'classnames';
@@ -34,10 +34,10 @@ const Messages = (props) => {
    const isFetching = useSelector(state => getIsFetchingSelector(state));
 
    const { userId } = useParams();
-   const interlocutor = dialogs.filter(dialog => dialog.id == userId)[0];
+   const interlocutor = dialogs.filter(dialog => dialog.id === +userId)[0];
 
    useEffect(() => {
-      dispatch(setMessages(userId, pageMessagesCount, 1)); //userId, count, page
+      dispatch(getMessages(userId, pageMessagesCount, 1)); //userId, count, page
    }, [userId]);
 
    const handleSendNewMessage = (text) => {

@@ -26,7 +26,7 @@ const ProfileInfo = (props) => {
                }
                {/*link more quickly than setDialogsThunkCraeter */}
                {!props.isOwner &&
-                  <NavLink to={`/messages/${props.profile.userId}`} >
+                  <NavLink to={`/messages`} >
                      <Button text={'message'}
                         className={s.messageButton}
                         onClick={() => props.startNewChat(props.profile.userId)} />

@@ -15,6 +15,7 @@ import {
 import {
    getIdSelector,
 } from '../../../../redux/selectors/auth-selector.js';
+
 import {
    setProfileThunkCreater as setProfile
 } from '../../../../redux/reducers/profile-reducer.js';
@@ -23,7 +24,7 @@ import {
    unfollowThunkCreater as unfollow
 } from '../../../../redux/reducers/members-reducer.js';
 import {
-   startNewChatThunkCreater as startNewChat
+   startNewChatAC as startNewChat
 } from '../../../../redux/reducers/messages-reducer.js';
 import s from './Profile.module.css';
 
