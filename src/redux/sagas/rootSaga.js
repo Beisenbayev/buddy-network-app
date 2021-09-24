@@ -1,6 +1,18 @@
 import { takeEvery } from 'redux-saga/effects';
 
 import {
+   START_INITIALIZATION, handleStartInitialization
+} from '../reducers/app-reducer.js';
+
+import {
+   GET_USER_DATA, handleGetUserData,
+   GET_USER_AVATAR, handleGetUserAvatar,
+   GET_CAPTCHA_URL, handleGetCaptchaUrl,
+   LOGIN, hanldeLogin,
+   LOGOUT, handleLogout
+} from '../reducers/auth-reducer.js';
+
+import {
    GET_PROFILE, handleGetProfile,
    GET_STATUS, handleGetStatus,
    GET_FOLLOWED, handleGetFollowed,
@@ -27,6 +39,14 @@ import {
 } from '../reducers/members-reducer';
 
 function* watcherSaga() {
+   yield takeEvery(START_INITIALIZATION, handleStartInitialization);
+
+   yield takeEvery(GET_USER_DATA, handleGetUserData);
+   yield takeEvery(GET_USER_AVATAR, handleGetUserAvatar);
+   yield takeEvery(GET_CAPTCHA_URL, handleGetCaptchaUrl);
+   yield takeEvery(LOGIN, hanldeLogin);
+   yield takeEvery(LOGOUT, handleLogout);
+
    yield takeEvery(GET_PROFILE, handleGetProfile);
    yield takeEvery(GET_STATUS, handleGetStatus);
    yield takeEvery(GET_FOLLOWED, handleGetFollowed);

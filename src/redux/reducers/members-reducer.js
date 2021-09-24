@@ -119,19 +119,19 @@ export function* handleGetMembers({ count, page, term, friend }) {
    yield put(toggleIsFetchingAC(false));
 }
 
-export function* handleGetFriends({count, page}) {
+export function* handleGetFriends({ count, page }) {
    const response = yield call(membersAPI.getMembersRequest, count, page, '', true);
    yield put(setFriendsAC(response.items));
    yield put(setTotalFriendsCountAC(response.totalCount));
 }
 
-export function* handleGetNewcomers({count}) {
+export function* handleGetNewcomers({ count }) {
    const response = yield call(membersAPI.getMembersRequest, count, 1, '', null);
    yield put(setNewcomersAC(response.items));
    yield put(setTotalMembersCountAC(response.totalCount));
 }
 
-export function* handleFollow({userId}) {
+export function* handleFollow({ userId }) {
    yield put(toggleFollowingProgressAC(true, userId));
    const response = yield call(followAPI.followRequest, userId);
    if (response.resultCode === 0) {
@@ -139,10 +139,10 @@ export function* handleFollow({userId}) {
       yield put(getFriendsAC(5, 1));
       yield put(getFollowedAC(userId)); //change it
    }
-   yield put(toggleFollowingProgressAC(false, id));
+   yield put(toggleFollowingProgressAC(false, userId));
 }
 
-export function* handleUnfollow({userId}) {
+export function* handleUnfollow({ userId }) {
    yield put(toggleFollowingProgressAC(true, userId));
    const response = yield call(followAPI.unfollowRequest, userId);
    if (response.resultCode === 0) {
@@ -150,7 +150,7 @@ export function* handleUnfollow({userId}) {
       yield put(getFriendsAC(5, 1));
       yield put(getFollowedAC(userId)); //change it
    }
-   yield put(toggleFollowingProgressAC(false, id));
+   yield put(toggleFollowingProgressAC(false, userId));
 }
 
 

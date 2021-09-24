@@ -6,8 +6,9 @@ import {
    getIdSelector,
    getIsAuthSelector
 } from '../../redux/selectors/auth-selector.js';
+
 import {
-   logoutThunkCreater as logout
+   logoutAC as logout
 } from '../../redux/reducers/auth-reducer.js';
 import cn from 'classnames';
 import s from './Header.module.css';

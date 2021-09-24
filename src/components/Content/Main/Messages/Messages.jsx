@@ -15,7 +15,8 @@ import {
 } from '../../../../redux/selectors/auth-selector.js';
 import {
    getMessagesAC as getMessages,
-   sendNewMessageAC as sendNewMessage
+   sendNewMessageAC as sendNewMessage,
+   getNewMessagesCountAC as getNewMessagesCount
 } from '../../../../redux/reducers/messages-reducer.js';
 import avatarCreater from '../../../../utils/avatarCreater.js';
 import cn from 'classnames';
@@ -35,9 +36,13 @@ const Messages = (props) => {
 
    const { userId } = useParams();
    const interlocutor = dialogs.filter(dialog => dialog.id === +userId)[0];
+   const messagesWindow = React.createRef();
 
    useEffect(() => {
+      messagesWindow.current.scrollTo({top: 200});
+
       dispatch(getMessages(userId, pageMessagesCount, 1)); //userId, count, page
+      dispatch(getNewMessagesCount()); 
    }, [userId]);
 
    const handleSendNewMessage = (text) => {
@@ -70,7 +75,7 @@ const Messages = (props) => {
                <img src={interlocutor.photos.small || avatarCreater()} alt="" />
             </div>
          </div>
-         <div className={s.messageItems}>
+         <div className={s.messageItems} ref={messagesWindow}>
             {messageItems}
          </div>
          <div className={s.newMessageForm}>

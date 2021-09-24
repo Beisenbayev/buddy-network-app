@@ -4,7 +4,7 @@ import {
 	getInitializedSelector 
 } from './redux/selectors/app-selector.js';
 import { 
-	initializeThunkCreate as initialize
+	startInitializationAC as initialize
 } from './redux/reducers/app-reducer';
 import s from './App.module.css';
 

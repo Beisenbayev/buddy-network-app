@@ -2,7 +2,7 @@ import { call, put, select } from 'redux-saga/effects';
 import { messagesAPI } from '../../api/api.js';
 
 const messagesID = 'buddy/messages';
-export const START_NEW_CHAT = `${messagesID}/START_NEW_CHAT`; 
+export const START_NEW_CHAT = `${messagesID}/START_NEW_CHAT`;
 export const GET_DIALOGS = `${messagesID}/GET_DIALOGS`;
 export const GET_MESSAGES = `${messagesID}/GET_MESSAGES`;
 export const SEND_NEW_MESSAGE = `${messagesID}/SEND_NEW_MESSAGE`;
@@ -55,7 +55,7 @@ const messagesReducer = (state = initialState, action) => {
    }
 }
 
-export const startNewChatAC = (userId) => ({type:START_NEW_CHAT, userId});
+export const startNewChatAC = (userId) => ({ type: START_NEW_CHAT, userId });
 export const getDialogsAC = () => ({ type: GET_DIALOGS });
 export const getMessagesAC = (userId, count, page) => ({ type: GET_MESSAGES, userId, count, page });
 export const sendNewMessageAC = (userId, text) => ({ type: SEND_NEW_MESSAGE, userId, text });
@@ -69,7 +69,7 @@ const setLastMessageStateAC = (lastMessageState) => ({ type: SET_LAST_MESSAGE_ST
 const setNewMessagesCountAC = (newMessagesCount) => ({ type: SET_NEW_MESSAGES_COUNT, newMessagesCount });
 const toggleIsFetchingAC = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 
-export function* handleStartNewChat ({userId}) {
+export function* handleStartNewChat({ userId }) {
    yield call(messagesAPI.startСhattingRequest, userId);
    yield put(getDialogsAC());
 }

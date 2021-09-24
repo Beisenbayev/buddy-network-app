@@ -1,6 +1,6 @@
 import { call, put, select } from 'redux-saga/effects';
 import { followAPI, profileAPI } from '../../api/api.js';
-import { setUserAvatarThunkCreater } from './auth-reducer.js';
+import { getUserAvatarAC } from './auth-reducer.js';
 
 const profileID = 'buddy/profile';
 export const GET_PROFILE = `${profileID}/GET_PROFILE`;
@@ -101,7 +101,7 @@ export function* handleUpdateAvatar({ avatar }) {
    if (response.resultCode === 0) {
       yield put(setAvatarAC(response.data.photos));
       //just for experiment, you shoud replace it with callback [setAvatarAC] from auth-reducer
-      dispatch(setUserAvatarThunkCreater(userId));
+      yield put(getUserAvatarAC(userId));
    } else {
       const errorMessage = (response.messages.length > 0) && response.messages[0];
    }
