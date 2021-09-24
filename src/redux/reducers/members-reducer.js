@@ -1,7 +1,13 @@
+import { call, put } from 'redux-saga/effects';
 import { membersAPI, followAPI } from '../../api/api.js';
-import { setFollowedThunkCreater } from './profile-reducer';
+import { getFollowedAC } from './profile-reducer';
 
 const membersID = 'buddy/members';
+export const GET_MEMBERS = `${membersID}/GET_MEMBERS`;
+export const GET_FRIENDS = `${membersID}/GET_FRIENDS`;
+export const GET_NEWCOMERS = `${membersID}/GET_NEWCOMERS`;
+export const FOLLOW = `${membersID}/FOLLOW`;
+export const UNFOLLOW = `${membersID}/UNFOLLOW`;
 const SET_MEMBERS = `${membersID}/SET_MEMBERS`;
 const SET_FRIENDS = `${membersID}/SET_FRIENDS`;
 const SET_NEWCOMERS = `${membersID}/SET_NEWCOMERS`;
@@ -83,6 +89,12 @@ const membersReducer = (state = initialState, action) => {
    }
 }
 
+
+export const getMembersAC = (count, page, term, friend) => ({ type: GET_MEMBERS, count, page, term, friend });
+export const getFriendsAC = (count, page) => ({ type: GET_FRIENDS, count, page });
+export const getNewcomersAC = (count) => ({ type: GET_NEWCOMERS, count });
+export const followAC = (userId) => ({ type: FOLLOW, userId });
+export const unfollowAC = (userId) => ({ type: UNFOLLOW, userId });
 const setMembersAC = (members) => ({ type: SET_MEMBERS, members });
 const setFriendsAC = (friends) => ({ type: SET_FRIENDS, friends });
 const setNewcomersAC = (newcomers) => ({ type: SET_NEWCOMERS, newcomers });
@@ -96,59 +108,49 @@ const toggleFollowingAC = (id, followed) => ({ type: TOGGLE_FOLLOWING, id, follo
 const toggleFollowingProgressAC = (followingInProgress, id) => ({ type: TOGGLE_FOLLOWING_PROGRESS, followingInProgress, id });
 const toggleIsFetchingAC = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 
-export const setMembersThunkCreater = (count, page, term, friend) => {
-   return async (dispatch) => {
-      dispatch(toggleIsFetchingAC(true));
-      const response = await membersAPI.getMembersRequest(count, page, term, friend);
-      dispatch(setMembersAC(response.items));
-      dispatch(setCurrentPageAC(page));
-      dispatch(setTotalItemsCountAC(response.totalCount));
-      dispatch(setMembersTypeAC(friend));
-      dispatch(setSearchTermAC(term));
-      dispatch(toggleIsFetchingAC(false));
-   }
+export function* handleGetMembers({ count, page, term, friend }) {
+   yield put(toggleIsFetchingAC(true));
+   const response = yield call(membersAPI.getMembersRequest, count, page, term, friend);
+   yield put(setMembersAC(response.items));
+   yield put(setCurrentPageAC(page));
+   yield put(setTotalItemsCountAC(response.totalCount));
+   yield put(setMembersTypeAC(friend));
+   yield put(setSearchTermAC(term));
+   yield put(toggleIsFetchingAC(false));
 }
 
-export const setFriendsThunkCreater = (count, page) => {
-   return async (dispatch) => {
-      const response = await membersAPI.getMembersRequest(count, page, '', true);
-      dispatch(setFriendsAC(response.items));
-      dispatch(setTotalFriendsCountAC(response.totalCount));
-   }
+export function* handleGetFriends({ count, page }) {
+   const response = yield call(membersAPI.getMembersRequest, count, page, '', true);
+   yield put(setFriendsAC(response.items));
+   yield put(setTotalFriendsCountAC(response.totalCount));
 }
 
-export const setNewcomersThunkCreater = (count) => {
-   return async (dispatch) => {
-      const response = await membersAPI.getMembersRequest(count, 1, '', null);
-      dispatch(setNewcomersAC(response.items));
-      dispatch(setTotalMembersCountAC(response.totalCount));
-   }
+export function* handleGetNewcomers({ count }) {
+   const response = yield call(membersAPI.getMembersRequest, count, 1, '', null);
+   yield put(setNewcomersAC(response.items));
+   yield put(setTotalMembersCountAC(response.totalCount));
 }
 
-export const followThunkCreater = (id) => {
-   return async (dispatch) => {
-      dispatch(toggleFollowingProgressAC(true, id));
-      const response = await followAPI.followRequest(id);
-      if (response.resultCode === 0) {
-         dispatch(toggleFollowingAC(id, true));
-         dispatch(setFriendsThunkCreater(5, 1));
-         dispatch(setFollowedThunkCreater(id));
-      }
-      dispatch(toggleFollowingProgressAC(false, id));
+export function* handleFollow({ userId }) {
+   yield put(toggleFollowingProgressAC(true, userId));
+   const response = yield call(followAPI.followRequest, userId);
+   if (response.resultCode === 0) {
+      yield put(toggleFollowingAC(userId, true));
+      yield put(getFriendsAC(5, 1));
+      yield put(getFollowedAC(userId)); //change it
    }
+   yield put(toggleFollowingProgressAC(false, userId));
 }
 
-export const unfollowThunkCreater = (id) => {
-   return async (dispatch) => {
-      dispatch(toggleFollowingProgressAC(true, id));
-      const response = await followAPI.unfollowRequest(id);
-      if (response.resultCode === 0) {
-         dispatch(toggleFollowingAC(id, false));
-         dispatch(setFriendsThunkCreater(5, 1));
-         dispatch(setFollowedThunkCreater(id));
-      }
-      dispatch(toggleFollowingProgressAC(false, id));
+export function* handleUnfollow({ userId }) {
+   yield put(toggleFollowingProgressAC(true, userId));
+   const response = yield call(followAPI.unfollowRequest, userId);
+   if (response.resultCode === 0) {
+      yield put(toggleFollowingAC(userId, false));
+      yield put(getFriendsAC(5, 1));
+      yield put(getFollowedAC(userId)); //change it
    }
+   yield put(toggleFollowingProgressAC(false, userId));
 }
 
 

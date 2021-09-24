@@ -30,7 +30,9 @@ const Navigation = (props) => {
             <li className={s.link}>
                <NavLink to='/messages'
                   activeClassName={s.activeLink}><FaCommentAlt /> <span>messages</span>
-                  <b className={s.notificationCount}>{newMessagesCount}</b>
+                  {newMessagesCount > 0 &&
+                     <b className={s.notificationCount}>{newMessagesCount}</b>
+                  }
                </NavLink>
             </li>
             <li className={s.link}>

@@ -15,15 +15,16 @@ import {
 import {
    getIdSelector,
 } from '../../../../redux/selectors/auth-selector.js';
+
 import {
-   setProfileThunkCreater as setProfile
+   getProfileAC as getProfile
 } from '../../../../redux/reducers/profile-reducer.js';
 import {
-   followThunkCreater as follow,
-   unfollowThunkCreater as unfollow
+   followAC as follow,
+   unfollowAC as unfollow
 } from '../../../../redux/reducers/members-reducer.js';
 import {
-   startNewChatThunkCreater as startNewChat
+   startNewChatAC as startNewChat
 } from '../../../../redux/reducers/messages-reducer.js';
 import s from './Profile.module.css';
 
@@ -44,7 +45,7 @@ const Profile = (props) => {
    const { userId } = useParams(); //typeof === string
 
    useEffect(() => {
-      dispatch(setProfile(userId));
+      dispatch(getProfile(userId));
    }, [userId]);
 
    const handleFollow = (userId) => {

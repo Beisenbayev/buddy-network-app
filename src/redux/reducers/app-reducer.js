@@ -1,9 +1,12 @@
-import { setUserDataThunkCreater } from './auth-reducer.js';
-import { setFriendsThunkCreater } from './members-reducer.js';
-import { setNewcomersThunkCreater } from './members-reducer.js';
-import { setNewMessagesCountThunkCreater } from './messages-reducer.js';
+import { all, put } from 'redux-saga/effects';
+import { getUserDataAC } from './auth-reducer.js';
+import { getFriendsAC } from './members-reducer.js';
+import { getNewcomersAC } from './members-reducer.js';
+import { getNewMessagesCountAC } from './messages-reducer.js';
 
-const INITIALIZATION = 'buddy/INITIALIZATION';
+const appId = 'buddy/appId';
+export const START_INITIALIZATION = `${appId}/START_INITIALIZATION`;
+const CONFIRM_INITIALIZATION = `${appId}/CONFIRM_INITIALIZATION`;
 
 const initialState = {
    initialized: false,
@@ -11,27 +14,25 @@ const initialState = {
 
 const appReducer = (state = initialState, action) => {
    switch (action.type) {
-      case INITIALIZATION: {
+      case CONFIRM_INITIALIZATION: {
          return { ...state, initialized: true };
       }
       default: return state;
    }
 }
 
-const initializeAC = () => ({ type: INITIALIZATION });
+export const startInitializationAC = () => ({ type: START_INITIALIZATION });
+const confirmInitializeAC = () => ({ type: CONFIRM_INITIALIZATION });
 
-export const initializeThunkCreate = () => {
-   return (dispatch) => {
-
-      Promise.all([
-         dispatch(setUserDataThunkCreater()),
-         dispatch(setFriendsThunkCreater(5, 1)),
-         dispatch(setNewcomersThunkCreater(5)),
-         //dispatch(setNewMessagesCountThunkCreater()),
-      ])
-         .then(() => dispatch(initializeAC()));
-   }
-};
+export function* handleStartInitialization({ }) {
+   yield all([
+      put(getUserDataAC()),
+      put(getFriendsAC(5, 1)),
+      put(getNewcomersAC(5)),
+      put(getNewMessagesCountAC())
+   ]);
+   yield put(confirmInitializeAC());
+}
 
 
 export default appReducer;

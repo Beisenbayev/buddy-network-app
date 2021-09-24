@@ -14,11 +14,12 @@ import {
 } from '../../../../redux/selectors/members-selector.js';
 import {
    getIsAuthSelector,
-} from '../../../../redux/selectors/auth-selector.js'
+} from '../../../../redux/selectors/auth-selector.js';
+
 import {
-   setMembersThunkCreater as setMembers,
-   followThunkCreater as follow,
-   unfollowThunkCreater as unfollow
+   getMembersAC as getMembers,
+   followAC as follow,
+   unfollowAC as unfollow
 } from '../../../../redux/reducers/members-reducer.js';
 import cn from 'classnames';
 import s from './Members.module.css';
@@ -43,19 +44,19 @@ const Members = (props) => {
    const isAuth = useSelector(state => getIsAuthSelector(state));
 
    useEffect(() => {
-      dispatch(setMembers(pageItemsCount, currentPage, '', membersType)); //count, page, term, friend
+      dispatch(getMembers(pageItemsCount, currentPage, '', membersType)); //count, page, term, friend
    }, []);
 
    const handleMembersTypeChange = (type) => {
-      dispatch(setMembers(pageItemsCount, 1, '', type));
+      dispatch(getMembers(pageItemsCount, 1, '', type));
    }
 
    const handleMembersSearch = (term) => {
-      dispatch(setMembers(pageItemsCount, 1, term, null));
+      dispatch(getMembers(pageItemsCount, 1, term, null));
    }
 
    const handlePageChange = (page) => {
-      dispatch(setMembers(pageItemsCount, page, searchTerm, membersType));
+      dispatch(getMembers(pageItemsCount, page, searchTerm, membersType));
    }
 
    const handleFollow = (id) => {

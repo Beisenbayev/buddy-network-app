@@ -58,3 +58,19 @@
   height: 100%;
   border-radius: 100%;
 }
+
+.messageItems {
+  max-height: 58vh;
+  margin-right: -15px;
+  margin-bottom: 20px;
+  overflow-y: auto;
+}
+
+.messageItems::-webkit-scrollbar {
+  opacity: 0;
+}
+
+.newMessageForm {
+  height: 80px;
+  min-height: 80px;
+}

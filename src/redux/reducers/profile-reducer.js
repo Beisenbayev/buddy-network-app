@@ -1,7 +1,14 @@
+import { call, put, select } from 'redux-saga/effects';
 import { followAPI, profileAPI } from '../../api/api.js';
-import { setUserAvatarThunkCreater } from './auth-reducer.js';
+import { getUserAvatarAC } from './auth-reducer.js';
 
-const profileID = 'buddy/profile'
+const profileID = 'buddy/profile';
+export const GET_PROFILE = `${profileID}/GET_PROFILE`;
+export const GET_STATUS = `${profileID}/GET_STATUS`;
+export const GET_FOLLOWED = `${profileID}/GET_FOLLOWED`;
+export const UPDATE_PROFILE = `${profileID}/UPDATE_PROFILE`;
+export const UPDATE_STATUS = `${profileID}/UPDATE_STATUS`;
+export const UPDATE_AVATAR = `${profileID}/UPDATE_AVATAR`;
 const SET_PROFILE = `${profileID}/SET_PROFILE`;
 const SET_STATUS = `${profileID}/SET_STATUS`;
 const SET_AVATAR = `${profileID}/SET_AVATAR`;
@@ -36,71 +43,67 @@ const profileReducer = (state = initialState, action) => {
    }
 }
 
+export const getProfileAC = (userId) => ({ type: GET_PROFILE, userId });
+export const getStatusAC = (userId) => ({ type: GET_STATUS, userId });
+export const getFollowedAC = (userId) => ({ type: GET_FOLLOWED, userId });
+export const updateProfileAC = (data) => ({ type: UPDATE_PROFILE, data });
+export const updateStatusAC = (status) => ({ type: UPDATE_STATUS, status });
+export const updateAvatarAC = (avatar) => ({ type: UPDATE_AVATAR, avatar });
 const setProfileAC = (profile) => ({ type: SET_PROFILE, profile });
 const setStatusAC = (status) => ({ type: SET_STATUS, status });
 const setAvatarAC = (photos) => ({ type: SET_AVATAR, photos });
 const setFollowedAC = (followed) => ({ type: SET_FOLLOWED, followed });
 const toggleIsFetchingAC = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 
-export const setProfileThunkCreater = (id) => {
-   return async (dispatch) => {
-      dispatch(toggleIsFetchingAC(true));
-      const response = await profileAPI.getProfileRequest(id);
-      dispatch(setProfileAC(response));
-      dispatch(setStatusThunkCreater(id));
-      dispatch(setFollowedThunkCreater(id));
-      dispatch(toggleIsFetchingAC(false));
+export function* handleGetProfile({ userId }) {
+   yield put(toggleIsFetchingAC(true));
+   const response = yield call(profileAPI.getProfileRequest, userId);
+   yield put(setProfileAC(response));
+   yield put(getStatusAC(userId));
+   yield put(getFollowedAC(userId));
+   yield put(toggleIsFetchingAC(false));
+}
+
+export function* handleGetStatus({ userId }) {
+   const response = yield call(profileAPI.getStatusRequest, userId);
+   yield put(setStatusAC(response));
+}
+
+export function* handleGetFollowed({ userId }) {
+   const response = yield call(followAPI.getFollowingInfoRequest, userId);
+   yield put(setFollowedAC(response));
+}
+
+export function* handleUpdateProfile({ data }) {
+   const select = yield select();
+   const response = yield call(profileAPI.updateProfileRequest, data);
+   if (response.resultCode === 0) {
+      const userId = select.authorization.id;
+      yield put(getProfileAC(userId));
+   }
+   else {
+      const errorMessage = (response.messages.length > 0) && response.messages[0];
    }
 }
 
-export const setStatusThunkCreater = (id) => {
-   return async (dispatch) => {
-      const response = await profileAPI.getStatusRequest(id);
-      dispatch(setStatusAC(response));
+export function* handleUpdateStatus({ status }) {
+   const response = yield call(profileAPI.updateStatusRequest, status);
+   if (response.resultCode === 0) yield put(setStatusAC(status));
+   else {
+      const errorMessage = (response.messages.length > 0) && response.messages[0];
    }
 }
 
-export const setFollowedThunkCreater = (id) => {
-   return async (dispatch) => {
-      const response = await followAPI.getFollowingInfoRequest(id);
-      dispatch(setFollowedAC(response));
-   }
-}
-
-export const updateProfileThunkCreater = (data) => {
-   return async (dispatch, getState) => {
-      const response = await profileAPI.updateProfileRequest(data);
-      if (response.resultCode === 0) {
-         const id = getState().authorization.id;
-         dispatch(setProfileThunkCreater(id));
-      }
-      else {
-         const errorMessage = (response.messages.length > 0) && response.messages[0];
-      }
-   }
-}
-
-export const updateStatusThunkCreater = (status) => {
-   return async (dispatch) => {
-      const response = await profileAPI.updateStatusRequest(status);
-      if (response.resultCode === 0) dispatch(setStatusAC(status));
-      else {
-         const errorMessage = (response.messages.length > 0) && response.messages[0];
-      }
-   }
-}
-
-export const updateAvatarThunkCreater = (avatar) => {
-   return async (dispatch, getState) => {
-      const id = getState().authorization.id;
-      const response = await profileAPI.updateAvatarRequest(avatar);
-      if (response.resultCode === 0) {
-         dispatch(setAvatarAC(response.data.photos));
-         //just for experiment, you shoud replace it with callback [setAvatarAC] from auth-reducer
-         dispatch(setUserAvatarThunkCreater(id));
-      } else {
-         const errorMessage = (response.messages.length > 0) && response.messages[0];
-      }
+export function* handleUpdateAvatar({ avatar }) {
+   const select = select();
+   const userId = select.authorization.id;
+   const response = yield call(profileAPI.updateAvatarRequest, avatar);
+   if (response.resultCode === 0) {
+      yield put(setAvatarAC(response.data.photos));
+      //just for experiment, you shoud replace it with callback [setAvatarAC] from auth-reducer
+      yield put(getUserAvatarAC(userId));
+   } else {
+      const errorMessage = (response.messages.length > 0) && response.messages[0];
    }
 }
 

@@ -18,9 +18,11 @@ const DialogItem = (props) => {
             <span className={s.lastDialogDate}>
                {moment(props.lastDialogActivityDate).format('ll')}
             </span>
-            <span className={s.newMessagesCount}>
-               {props.newMessagesCount}
-            </span>
+            {props.newMessagesCount > 0 &&
+               <span className={s.newMessagesCount}>
+                  {props.newMessagesCount}
+               </span>
+            }
          </div>
       </NavLink>
    );

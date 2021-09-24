@@ -7,8 +7,9 @@ import {
    getIsSubmitingSelector,
    getIsAuthSelector,
 } from '../../../../redux/selectors/auth-selector.js';
+
 import {
-   loginThunkCreater as login
+   loginAC as login
 } from '../../../../redux/reducers/auth-reducer.js';
 import cn from 'classnames';
 import s from './Login.module.css';

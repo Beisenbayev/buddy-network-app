@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import ThunkMiddleware from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
+import watcherSaga from './sagas/rootSaga.js';
 
 import appReducer from './reducers/app-reducer.js';
 import authReducer from './reducers/auth-reducer.js';
@@ -15,11 +16,15 @@ const reducers = combineReducers({
    membersPage: membersReducer,
 });
 
+const SagaMiddleware = createSagaMiddleware();
+const middlewares = [SagaMiddleware];
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers, composeEnhancers(
-   applyMiddleware(ThunkMiddleware)
+   applyMiddleware(...middlewares)
 ));
-window.store = store;
+SagaMiddleware.run(watcherSaga);
 
 
+document.store = store;
 export default store;
