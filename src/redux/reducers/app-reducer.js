@@ -29,7 +29,7 @@ export function* handleStartInitialization({ }) {
       put(getUserDataAC()),
       put(getFriendsAC(5, 1)),
       put(getNewcomersAC(5)),
-      put(getNewMessagesCountAC())
+      //put(getNewMessagesCountAC())
    ]);
    yield put(confirmInitializeAC());
 }
